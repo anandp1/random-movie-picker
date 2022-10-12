@@ -1,30 +1,13 @@
 import React from "react";
-import Link from "next/link";
-import { navigationOptions } from "../../lib/navigation-options";
+import { SearchIcon } from "@heroicons/react/solid";
 
-export interface NavBarProps {
-  currentPage?: string;
-}
-
-const NavBar = ({ currentPage }: NavBarProps): JSX.Element => {
+const NavBar = (): JSX.Element => {
   return (
-    <div className="flex flex-row items-center gap-12 bg-white my-3 mx-auto">
+    <div className="flex flex-row items-center gap-12 bg-black my-3 mx-auto">
       <div className="flex w-full items-center space-x-4">
-        {navigationOptions.map((item) =>
-          item.name === currentPage ? (
-            <Link key={item.name} href={item.navLink}>
-              <a className="bg-gray-300 text-gray-500 cursor-default px-3 py-2 rounded-md text-sm font-bold">
-                {item.name}
-              </a>
-            </Link>
-          ) : (
-            <Link key={item.name} href={item.navLink}>
-              <a className="text-gray-500 hover:bg-gray-300 px-3 py-2 rounded-md text-sm font-bold">
-                {item.name}
-              </a>
-            </Link>
-          )
-        )}
+        <button className="h-14 w-14 shadow-lg rounded-full border border-gray-400 bg-gray-400">
+          <SearchIcon className="w-7 h-7 mx-auto text-white" />
+        </button>
       </div>
     </div>
   );
