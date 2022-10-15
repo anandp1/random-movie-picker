@@ -10,9 +10,8 @@ const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
   return (
     <>
       <HeadComponent />
-      <div className="w-full min-h-screen overflow-y flex flex-col bg-black">
+      <div className="w-full min-h-screen overflow-y relative flex flex-col">
         <MainBody>{children}</MainBody>
-        <NavBar />
       </div>
     </>
   );
