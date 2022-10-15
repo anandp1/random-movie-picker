@@ -15,14 +15,14 @@ const Home: NextPage = ({ username }: HomeProps) => {
 
   if (error) {
     return (
-      <Layout username={username}>
+      <Layout username={username} mutateUserData={mutate}>
         <p>Failed to load</p>
       </Layout>
     );
   }
 
   return (
-    <Layout username={username}>
+    <Layout username={username} mutateUserData={mutate}>
       {data ? (
         <div className="flex flex-col gap-y-3">
           {Object.keys(data.moviesByUser).map((displayName) => {

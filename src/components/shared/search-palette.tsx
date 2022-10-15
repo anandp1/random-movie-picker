@@ -9,7 +9,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import useSWR from "swr";
+import useSWR, { KeyedMutator } from "swr";
 import { debounce, uniqBy } from "lodash";
 
 import { Button } from "@mui/material";
@@ -28,12 +28,14 @@ interface SearchPaletteProps {
   showSearch: boolean;
   setShowSearch: Dispatch<SetStateAction<boolean>>;
   username: string;
+  mutateUserData: KeyedMutator<any>;
 }
 
 const SearchPalette: React.FC<SearchPaletteProps> = ({
   showSearch,
   setShowSearch,
   username,
+  mutateUserData,
 }: SearchPaletteProps) => {
   const [query, setQuery] = useState("");
   const { data, error, mutate } = useSWR(
@@ -65,7 +67,8 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
       username,
     });
 
-    // setShowSearch(false);
+    mutateUserData();
+    setShowSearch(false);
   };
 
   useEffect(() => {
