@@ -1,13 +1,9 @@
-import { Dialog, Combobox, Disclosure } from "@headlessui/react";
-import { GitBranchIcon, SearchIcon, SyncIcon } from "@primer/octicons-react";
+import { Dialog, Combobox } from "@headlessui/react";
+import { SearchIcon, SyncIcon } from "@primer/octicons-react";
 import { PlusCircleIcon } from "@heroicons/react/outline";
 
 import {
   Dispatch,
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  ReactFragment,
   SetStateAction,
   useCallback,
   useEffect,
@@ -99,7 +95,9 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
         <Combobox.Options>
           {!data
             ? SyncSection
-            : data.movieResults?.Search?.map((movie: any) => (
+            : data.movieResults?.Search?.filter(
+                (movie: any) => movie.Poster !== "N/A"
+              ).map((movie: any) => (
                 <div key={movie.Title} className="p-4 text-sm text-gray-600">
                   <button
                     className="rounded-lg shadow-md w-full group relative"
