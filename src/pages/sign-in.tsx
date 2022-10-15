@@ -88,7 +88,7 @@ const SignIn: React.FC = () => {
 const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
 
-  if (session) {
+  if (session.user?.email) {
     return {
       redirect: {
         destination: "/",

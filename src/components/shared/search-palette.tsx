@@ -15,6 +15,8 @@ import { debounce, uniqBy } from "lodash";
 import { Button } from "@mui/material";
 import { fetcher } from "../../lib/fetcher";
 import Image from "next/image";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 
 const SyncSection = (
   <div className="w-full flex justify-center">
@@ -25,11 +27,13 @@ const SyncSection = (
 interface SearchPaletteProps {
   showSearch: boolean;
   setShowSearch: Dispatch<SetStateAction<boolean>>;
+  username: string;
 }
 
 const SearchPalette: React.FC<SearchPaletteProps> = ({
   showSearch,
   setShowSearch,
+  username,
 }: SearchPaletteProps) => {
   const [query, setQuery] = useState("");
   const { data, error, mutate } = useSWR(
@@ -49,12 +53,19 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
     []
   );
 
-  const handleSelectedMovie = (
+  const handleSelectedMovie = async (
     title: string,
     imdbID: string,
     imageUrl: string
   ) => {
-    return;
+    await axios.post("/api/add-movie", {
+      title,
+      imdbID,
+      imageUrl,
+      username,
+    });
+
+    // setShowSearch(false);
   };
 
   useEffect(() => {

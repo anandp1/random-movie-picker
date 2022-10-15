@@ -3,13 +3,21 @@ import { SearchIcon } from "@heroicons/react/solid";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import { SearchPalette } from "./search-palette";
 
-const NavBar = (): JSX.Element => {
+interface NavBarProps {
+  username: string;
+}
+
+const NavBar = ({ username }: NavBarProps): JSX.Element => {
   const [showSearch, setShowSearch] = useState(false);
 
   return (
     <>
       {showSearch && (
-        <SearchPalette showSearch={showSearch} setShowSearch={setShowSearch} />
+        <SearchPalette
+          username={username}
+          showSearch={showSearch}
+          setShowSearch={setShowSearch}
+        />
       )}
       <div className="absolute right-[44%] bottom-0 flex flex-row items-center gap-12 my-3 mx-auto">
         <div className="flex w-full items-center space-x-4">

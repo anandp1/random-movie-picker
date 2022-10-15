@@ -16,4 +16,20 @@ const getUser = async (username: string): Promise<User | null> => {
   return user;
 };
 
-export { getUser };
+const addMovieToUser = async (
+  username: string,
+  title: string,
+  imbdId: string,
+  imageUrl: string
+): Promise<void> => {
+  const client = await getMongoClient();
+  const db = client.db(process.env.MONGODB_NAME);
+
+  const userCollection: Collection<User> = db.collection("users");
+  await userCollection.updateOne(
+    { username },
+    { $push: { movies: { title, imbdId, imageUrl } } }
+  );
+};
+
+export { getUser, addMovieToUser };

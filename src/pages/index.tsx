@@ -2,9 +2,13 @@ import type { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
 import Layout from "../components/shared/layout";
 
-const Home: NextPage = () => {
+interface HomeProps {
+  username: string;
+}
+
+const Home: NextPage = ({ username }: HomeProps) => {
   return (
-    <Layout>
+    <Layout username={username}>
       <p>Hlelo</p>
     </Layout>
   );
@@ -13,7 +17,8 @@ const Home: NextPage = () => {
 const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
 
-  if (!session) {
+  if (!session.user.email) {
+    console.log("here");
     return {
       redirect: {
         destination: "/sign-in",
@@ -23,7 +28,9 @@ const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: {},
+    props: {
+      username: session.user.email,
+    },
   };
 };
 
