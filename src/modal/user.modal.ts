@@ -4,6 +4,18 @@ import { getMongoClient } from "../middleware/mongodb";
 export interface User {
   username: string;
   password: string;
+  displayName: string;
+  movies: Movie[];
+}
+
+export interface Movie {
+  title: string;
+  imbdId: string;
+  imageUrl: string;
+}
+
+export interface MovieByUser {
+  [key: string]: Movie[];
 }
 
 const getUser = async (username: string): Promise<User | null> => {
@@ -32,4 +44,19 @@ const addMovieToUser = async (
   );
 };
 
-export { getUser, addMovieToUser };
+const getMoviesByUser = async (): Promise<MovieByUser> => {
+  const client = await getMongoClient();
+  const db = client.db(process.env.MONGODB_NAME);
+
+  const userCollection: Collection<User> = db.collection("users");
+  const moviesByUser = await userCollection.find().toArray();
+
+  const moviesByUserMap = {};
+  moviesByUser.forEach((user) => {
+    moviesByUserMap[user.displayName] = user.movies;
+  });
+
+  return moviesByUserMap;
+};
+
+export { getUser, addMovieToUser, getMoviesByUser };

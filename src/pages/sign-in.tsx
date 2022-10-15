@@ -10,8 +10,6 @@ const SignIn: React.FC = () => {
   const router = useRouter();
 
   const handleSignIn = () => {
-    console.log(username, password);
-
     signIn("credentials", {
       username,
       password,
