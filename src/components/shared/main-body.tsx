@@ -10,8 +10,8 @@ const MainBody: React.FC<MainBodyProps> = ({
   username,
 }: MainBodyProps) => {
   return (
-    <div className="flex flex-row grow h-full bg-gray-200">
-      <div className="relative container mx-auto max-w-7xl px-8 py-4 flex flex-col">
+    <div className="grid grid-cols-1 grow h-full bg-gray-200">
+      <div className="relative px-6 py-4 flex flex-col">
         {children}
         <NavBar username={username} />
       </div>

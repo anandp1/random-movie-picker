@@ -19,7 +19,7 @@ const NavBar = ({ username }: NavBarProps): JSX.Element => {
           setShowSearch={setShowSearch}
         />
       )}
-      <div className="sticky right-[44%] bottom-4 flex flex-row items-center gap-12 mx-auto">
+      <div className="sticky right-[44%] bottom-2 flex flex-row items-center gap-12 mt-auto mx-auto">
         <div className="flex w-full items-center space-x-4">
           <button
             className="h-14 w-14 shadow-lg rounded-full border border-blue-600 bg-blue-600"

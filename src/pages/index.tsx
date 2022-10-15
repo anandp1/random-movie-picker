@@ -1,8 +1,10 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
+import Image from "next/image";
 import useSWR from "swr";
 import Layout from "../components/shared/layout";
 import { fetcher } from "../lib/fetcher";
+import { Movie } from "../modal/user.modal";
 
 interface HomeProps {
   username: string;
@@ -22,23 +24,30 @@ const Home: NextPage = ({ username }: HomeProps) => {
   return (
     <Layout username={username}>
       {data ? (
-        Object.keys(data.moviesByUser).map((displayName) => {
-          return (
-            <div key={displayName}>
-              <h1>{displayName}</h1>
-              <ul>
-                {data.moviesByUser[displayName].map((movie) => {
-                  return (
-                    <li key={movie.imdbID}>
-                      <img src={movie.imageUrl} alt={movie.title} />
-                      <p>{movie.title}</p>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          );
-        })
+        <div className="flex flex-col gap-y-3">
+          {Object.keys(data.moviesByUser).map((displayName) => {
+            return (
+              <div key={displayName}>
+                <h1 className="text-black font-semibold text-4xl mb-2">
+                  {displayName}
+                </h1>
+                <div className="flex flex-row gap-x-2">
+                  {data.moviesByUser[displayName].map((movie: Movie) => {
+                    return (
+                      <Image
+                        key={movie.imbdId}
+                        height={280}
+                        width={210}
+                        src={movie.imageUrl}
+                        alt={movie.title}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       ) : (
         <p>Loading...</p>
       )}
