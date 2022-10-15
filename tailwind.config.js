@@ -5,7 +5,9 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      display: ["group-hover"],
+    },
   },
   plugins: [require("tailwind-scrollbar-hide")],
 };

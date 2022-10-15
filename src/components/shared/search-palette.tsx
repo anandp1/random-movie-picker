@@ -1,5 +1,7 @@
 import { Dialog, Combobox, Disclosure } from "@headlessui/react";
 import { GitBranchIcon, SearchIcon, SyncIcon } from "@primer/octicons-react";
+import { PlusCircleIcon } from "@heroicons/react/outline";
+
 import {
   Dispatch,
   JSXElementConstructor,
@@ -16,6 +18,7 @@ import { debounce, uniqBy } from "lodash";
 
 import { Button } from "@mui/material";
 import { fetcher } from "../../lib/fetcher";
+import Image from "next/image";
 
 const SyncSection = (
   <div className="w-full flex justify-center">
@@ -50,11 +53,18 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
     []
   );
 
+  const handleSelectedMovie = (
+    title: string,
+    imdbID: string,
+    imageUrl: string
+  ) => {
+    return;
+  };
+
   useEffect(() => {
     debouncedChangeHandler.cancel();
 
     if (query.length > 0) {
-      console.log(data);
       mutate();
     }
   }, [query, debouncedChangeHandler, mutate]);
@@ -63,21 +73,6 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
     return <div>Failed to load</div>;
   }
 
-  //    const allOptions = [];
-
-  //   pipelineObject?.forEach((pipeline) => allOptions.push(pipeline));
-  //   pullRequestObject?.forEach((pullRequest) => allOptions.push(pullRequest));
-
-  //   const filteredData = allOptions?.filter((option) => {
-  //     return (
-  //       option.title?.toLowerCase().includes(query.toLowerCase()) ||
-  //       option.name.toLowerCase().includes(query.toLowerCase())
-  //     );
-  //   if (!data) {
-  //     return SyncSection;
-  //   }
-
-  console.log(data);
   return (
     <Dialog
       open={showSearch}
@@ -104,13 +99,36 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
         <Combobox.Options>
           {!data
             ? SyncSection
-            : data.movieResults?.Search?.map((movie) => (
+            : data.movieResults?.Search?.map((movie: any) => (
                 <div key={movie.Title} className="p-4 text-sm text-gray-600">
-                  <div className="mt-3 mb-3 flex content-center overflow-x-auto rounded-lg px-4 py-8 shadow-md">
-                    <div className="flex flex-col">
-                      <span className="text-2xl">{movie.Title}</span>
+                  <button
+                    className="rounded-lg shadow-md w-full group relative"
+                    onClick={() =>
+                      handleSelectedMovie(
+                        movie.Title,
+                        movie.imdbID,
+                        movie.Poster
+                      )
+                    }
+                  >
+                    <span className="hidden group-hover:block absolute right-[44%] top-1/2">
+                      <PlusCircleIcon className="w-10 h-10 text-gray-700" />
+                    </span>
+
+                    <div className="flex flex-row content-center gap-x-4 hover:opacity-50 px-4 py-8">
+                      <Image
+                        src={movie.Poster}
+                        width={100}
+                        height={150}
+                        className="text-2xl"
+                        alt="image"
+                      />
+                      <div className="flex flex-col">
+                        <span className="text-2xl mr-auto">{movie.Title}</span>
+                        <span className="text-xl mr-auto">{movie.Year}</span>
+                      </div>
                     </div>
-                  </div>
+                  </button>
                 </div>
               ))}
         </Combobox.Options>
