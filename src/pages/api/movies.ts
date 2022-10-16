@@ -1,8 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axios from "axios";
-import { uniqBy } from "lodash";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getMoviesByUser, Movie } from "../../modal/user.modal";
+import { getMoviesByUser } from "../../modal/user.modal";
 
 export default async function handler(
   req: NextApiRequest,
