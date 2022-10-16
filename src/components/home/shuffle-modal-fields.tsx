@@ -20,7 +20,7 @@ const MenuProps = {
   },
 };
 
-const names = ["Anand", "Alborz"];
+const names = ["Anand", "Alborz", "Umair", "Saad"];
 
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
