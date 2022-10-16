@@ -25,14 +25,14 @@ const Home: NextPage = ({ username }: HomeProps) => {
     <Layout username={username} mutateUserData={mutate}>
       {data ? (
         <div className="flex flex-col gap-y-3">
-          {Object.keys(data.moviesByUser).map((displayName) => {
+          {Object.keys(data.moviesByUser).map((username) => {
             return (
-              <div key={displayName}>
+              <div key={username}>
                 <h1 className="text-black font-semibold text-4xl mb-2">
-                  {displayName}
+                  {data.moviesByUser[username].displayName}
                 </h1>
                 <div className="flex flex-row gap-x-2">
-                  {data.moviesByUser[displayName].map((movie: Movie) => {
+                  {data.moviesByUser[username].movies?.map((movie: Movie) => {
                     return (
                       <Image
                         key={movie.imbdId}
@@ -58,7 +58,7 @@ const Home: NextPage = ({ username }: HomeProps) => {
 const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
 
-  if (!session.user.email) {
+  if (!session?.user?.email) {
     return {
       redirect: {
         destination: "/sign-in",

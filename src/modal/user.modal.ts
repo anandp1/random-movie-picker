@@ -15,7 +15,7 @@ export interface Movie {
 }
 
 export interface MovieByUser {
-  [key: string]: Movie[];
+  [key: string]: { movies: Movie[]; displayName: string };
 }
 
 const getUser = async (username: string): Promise<User | null> => {
@@ -53,7 +53,10 @@ const getMoviesByUser = async (): Promise<MovieByUser> => {
 
   const moviesByUserMap = {};
   moviesByUser.forEach((user) => {
-    moviesByUserMap[user.displayName] = user.movies;
+    moviesByUserMap[user.username] = {
+      movies: user.movies,
+      displayName: user.displayName,
+    };
   });
 
   return moviesByUserMap;

@@ -39,7 +39,7 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
 }: SearchPaletteProps) => {
   const [query, setQuery] = useState("");
   const { data, error, mutate } = useSWR(
-    query ? `/api/movies?title=${query}` : null,
+    query ? `/api/movies?title=${query}&username=${username}` : null,
     fetcher
   );
 
@@ -109,40 +109,42 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
         <Combobox.Options>
           {!data
             ? SyncSection
-            : data.movieResults?.Search?.filter(
-                (movie: any) => movie.Poster !== "N/A"
-              ).map((movie: any) => (
-                <div key={movie.Title} className="p-4 text-sm text-gray-600">
-                  <button
-                    className="rounded-lg shadow-md w-full group relative"
-                    onClick={() =>
-                      handleSelectedMovie(
-                        movie.Title,
-                        movie.imdbID,
-                        movie.Poster
-                      )
-                    }
-                  >
-                    <span className="hidden group-hover:block absolute right-[44%] top-1/2">
-                      <PlusCircleIcon className="w-10 h-10 text-gray-700" />
-                    </span>
+            : data.movieResults
+                ?.filter((movie: any) => movie.Poster !== "N/A")
+                .map((movie: any) => (
+                  <div key={movie.Title} className="p-4 text-sm text-gray-600">
+                    <button
+                      className="rounded-lg shadow-md w-full group relative"
+                      onClick={() =>
+                        handleSelectedMovie(
+                          movie.Title,
+                          movie.imdbID,
+                          movie.Poster
+                        )
+                      }
+                    >
+                      <span className="hidden group-hover:block absolute right-[44%] top-1/2">
+                        <PlusCircleIcon className="w-10 h-10 text-gray-700" />
+                      </span>
 
-                    <div className="flex flex-row content-center gap-x-4 hover:opacity-50 px-4 py-8">
-                      <Image
-                        src={movie.Poster}
-                        width={100}
-                        height={150}
-                        className="text-2xl"
-                        alt="image"
-                      />
-                      <div className="flex flex-col">
-                        <span className="text-2xl mr-auto">{movie.Title}</span>
-                        <span className="text-xl mr-auto">{movie.Year}</span>
+                      <div className="flex flex-row content-center gap-x-4 hover:opacity-50 px-4 py-8">
+                        <Image
+                          src={movie.Poster}
+                          width={100}
+                          height={150}
+                          className="text-2xl"
+                          alt="image"
+                        />
+                        <div className="flex flex-col">
+                          <span className="text-2xl mr-auto">
+                            {movie.Title}
+                          </span>
+                          <span className="text-xl mr-auto">{movie.Year}</span>
+                        </div>
                       </div>
-                    </div>
-                  </button>
-                </div>
-              ))}
+                    </button>
+                  </div>
+                ))}
         </Combobox.Options>
       </Combobox>
     </Dialog>

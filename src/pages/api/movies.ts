@@ -2,6 +2,7 @@
 import axios from "axios";
 import { uniqBy } from "lodash";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getMoviesByUser, Movie } from "../../modal/user.modal";
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,5 +12,13 @@ export default async function handler(
     `${process.env.API_BASE_URL}?s=${req.query.title}&apikey=${process.env.API_KEY}`
   );
 
-  res.status(200).json({ movieResults: result.data });
+  const moviesByUser = await getMoviesByUser();
+
+  const filteredResult = result.data.Search.filter((movie: any) => {
+    return !moviesByUser[req.query.username as string]?.movies?.some(
+      (userMovie: any) => userMovie.title === movie.Title
+    );
+  });
+
+  res.status(200).json({ movieResults: filteredResult });
 }
