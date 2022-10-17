@@ -1,28 +1,19 @@
-import { useState, Dispatch, Fragment, SetStateAction } from "react";
-import { Listbox, Transition, Dialog } from "@headlessui/react";
-import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
+import { Dispatch, Fragment, SetStateAction } from "react";
+import { Transition, Dialog } from "@headlessui/react";
 import ShuffleModalFields from "./shuffle-modal-fields";
+import { SafeUser } from "../../modal/user.modal";
 
 interface ShuffleModalProps {
   showShuffle: boolean;
   setShowShuffle: Dispatch<SetStateAction<boolean>>;
+  availableUsers: SafeUser[];
 }
 
 const ShuffleModal: React.FC<ShuffleModalProps> = ({
   showShuffle,
   setShowShuffle,
+  availableUsers,
 }: ShuffleModalProps) => {
-  const people = [
-    { name: "Wade Cooper" },
-    { name: "Arlene Mccoy" },
-    { name: "Devon Webb" },
-    { name: "Tom Cook" },
-    { name: "Tanya Fox" },
-    { name: "Hellen Schmidt" },
-  ];
-
-  const [selected, setSelected] = useState(people[0]);
-
   return (
     <Transition.Root show={showShuffle} as={Fragment}>
       <Dialog
@@ -57,8 +48,8 @@ const ShuffleModal: React.FC<ShuffleModalProps> = ({
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-lg w-[90%] px-4 pt-5 pb-4 text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
-              <ShuffleModalFields />
+            <div className="inline-block align-bottom bg-gray-800 rounded-lg w-[90%] px-4 pt-5 pb-4 text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+              <ShuffleModalFields availableUsers={availableUsers} />
             </div>
           </Transition.Child>
         </div>

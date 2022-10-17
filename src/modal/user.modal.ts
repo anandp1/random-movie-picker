@@ -8,6 +8,8 @@ export interface User {
   movies: Movie[];
 }
 
+export type SafeUser = Omit<User, "password" | "movies">;
+
 export interface Movie {
   title: string;
   imbdId: string;
@@ -53,10 +55,12 @@ const getMoviesByUser = async (): Promise<MovieByUser> => {
 
   const moviesByUserMap = {};
   moviesByUser.forEach((user) => {
-    moviesByUserMap[user.username] = {
-      movies: user.movies,
-      displayName: user.displayName,
-    };
+    if (user.movies) {
+      moviesByUserMap[user.username] = {
+        movies: user.movies,
+        displayName: user.displayName,
+      };
+    }
   });
 
   return moviesByUserMap;
@@ -79,4 +83,26 @@ const getAllMovies = async (usersSelected: string[]): Promise<Movie[]> => {
   return movies;
 };
 
-export { getUser, addMovieToUser, getMoviesByUser, getAllMovies };
+const getAvailableUsers = async (): Promise<SafeUser[]> => {
+  const client = await getMongoClient();
+  const db = client.db(process.env.MONGODB_NAME);
+
+  const userCollection: Collection<User> = db.collection("users");
+  const users = await userCollection.find().toArray();
+
+  const availableUsers = users
+    .filter((user) => user.movies?.length > 0)
+    .map((user) => {
+      const { username, displayName } = user;
+      return { username, displayName };
+    });
+  return availableUsers;
+};
+
+export {
+  getUser,
+  addMovieToUser,
+  getMoviesByUser,
+  getAllMovies,
+  getAvailableUsers,
+};

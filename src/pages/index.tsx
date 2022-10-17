@@ -5,26 +5,36 @@ import Layout from "../components/shared/layout";
 import { fetcher } from "../lib/fetcher";
 
 import MovieRow from "../components/home/movie-row";
+import { getAvailableUsers, SafeUser } from "../modal/user.modal";
 
 interface HomeProps {
   username: string;
+  availableUsers: SafeUser[];
 }
 
-const Home: NextPage = ({ username }: HomeProps) => {
+const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
   const { data, error, mutate } = useSWR("/api/user-movies", fetcher);
 
   if (error) {
     return (
-      <Layout username={username} mutateUserData={mutate}>
+      <Layout
+        username={username}
+        mutateUserData={mutate}
+        availableUsers={availableUsers}
+      >
         <p>Failed to load</p>
       </Layout>
     );
   }
 
   return (
-    <Layout username={username} mutateUserData={mutate}>
+    <Layout
+      username={username}
+      mutateUserData={mutate}
+      availableUsers={availableUsers}
+    >
       {data ? (
-        <div className="flex flex-col gap-y-3">
+        <div className="flex flex-col">
           {Object.keys(data.moviesByUser).map((username, index) => {
             return (
               <MovieRow
@@ -55,9 +65,12 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  const availableUsers = await getAvailableUsers();
+
   return {
     props: {
       username: session.user.email,
+      availableUsers,
     },
   };
 };

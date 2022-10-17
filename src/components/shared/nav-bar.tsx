@@ -4,13 +4,19 @@ import ShuffleIcon from "@mui/icons-material/Shuffle";
 import { SearchPalette } from "./search-palette";
 import { KeyedMutator } from "swr";
 import ShuffleModal from "../home/shuffle-modal";
+import { SafeUser } from "../../modal/user.modal";
 
 interface NavBarProps {
   username: string;
   mutateUserData: KeyedMutator<any>;
+  availableUsers: SafeUser[];
 }
 
-const NavBar = ({ username, mutateUserData }: NavBarProps): JSX.Element => {
+const NavBar = ({
+  username,
+  mutateUserData,
+  availableUsers,
+}: NavBarProps): JSX.Element => {
   const [showSearch, setShowSearch] = useState(false);
   const [showShuffle, setShowShuffle] = useState(false);
 
@@ -28,18 +34,19 @@ const NavBar = ({ username, mutateUserData }: NavBarProps): JSX.Element => {
         <ShuffleModal
           showShuffle={showShuffle}
           setShowShuffle={setShowShuffle}
+          availableUsers={availableUsers}
         />
       )}
       <div className="sticky right-[39%] sm:right-[44%] bottom-4 flex flex-row items-center gap-12 mt-auto mx-auto">
         <div className="flex w-full items-center">
           <button
-            className="h-14 w-14 shadow-lg"
+            className="h-7 w-14 shadow-lg hover:scale-125"
             onClick={() => setShowSearch(true)}
           >
             <SearchIcon className="w-7 h-7 mx-auto text-white" />
           </button>
           <button
-            className="h-14 w-14 shadow-lg"
+            className="h-7 w-14 shadow-lg hover:scale-125"
             onClick={() => setShowShuffle(true)}
           >
             <ShuffleIcon className="w-7 h-7 mx-auto text-white" />
