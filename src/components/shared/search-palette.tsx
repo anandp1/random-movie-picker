@@ -10,13 +10,11 @@ import {
   useState,
 } from "react";
 import useSWR, { KeyedMutator } from "swr";
-import { debounce, uniqBy } from "lodash";
+import { debounce } from "lodash";
 
-import { Button } from "@mui/material";
 import { fetcher } from "../../lib/fetcher";
 import Image from "next/image";
 import axios from "axios";
-import { useSession } from "next-auth/react";
 
 const SyncSection = (
   <div className="w-full flex justify-center">
@@ -94,15 +92,15 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
       <Combobox
         onChange={setQuery}
         as="div"
-        className="relative bg-white max-w-xl mx-auto rounded-xl shadow-2xl flex flex-col max-h-[70vh] overflow-y-auto scrollbar-hide"
+        className="relative bg-gray-700 max-w-xl mx-auto rounded-xl shadow-2xl flex flex-col max-h-[70vh] overflow-y-auto scrollbar-hide"
         value={query}
       >
-        <div className="flex items-center px-4 mx-4 my-4 bg-gray-100 rounded-xl">
-          <SearchIcon className="mr-4 h-6 w-6 text-gray-500" />
+        <div className="flex items-center px-4 mx-4 my-4 bg-gray-700 rounded-xl border-gray-500 hover:border-gray-200 border">
+          <SearchIcon className="mr-4 h-6 w-6 text-gray-400" />
           <Combobox.Input
             onChange={debouncedChangeHandler}
             placeholder="Search Movies..."
-            className="w-full bg-transparent outline-none border-none text-sm text-gray-800 placeholder-gray-400 h-12"
+            className="w-full bg-transparent outline-none border-none text-sm text-gray-400 placeholder-gray-400 h-12"
           />
         </div>
 
@@ -112,9 +110,9 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
             : data.movieResults
                 ?.filter((movie: any) => movie.Poster !== "N/A")
                 .map((movie: any) => (
-                  <div key={movie.Title} className="p-4 text-sm text-gray-600">
+                  <div key={movie.Title} className="p-4 text-sm text-white">
                     <button
-                      className="rounded-lg shadow-md w-full group relative"
+                      className="rounded-lg shadow-md w-full group relative bg-gray-800"
                       onClick={() =>
                         handleSelectedMovie(
                           movie.Title,
@@ -124,7 +122,7 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
                       }
                     >
                       <span className="hidden group-hover:block absolute right-[44%] top-1/2">
-                        <PlusCircleIcon className="w-10 h-10 text-gray-700" />
+                        <PlusCircleIcon className="w-10 h-10 text-gray-300" />
                       </span>
 
                       <div className="flex flex-row content-center gap-x-4 hover:opacity-50 px-4 py-8">
