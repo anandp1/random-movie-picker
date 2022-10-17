@@ -67,7 +67,7 @@ const ShuffleModalFields: React.FC = () => {
     document.documentElement.clientWidth ||
     document.body.clientWidth;
 
-  const widthForm = width <= 640 ? 375 : 450;
+  const widthForm = width <= 640 ? 280 : 450;
   return (
     <div className="flex flex-col gap-y-3">
       <p className="text-center text-xl font-medium">Shuffle</p>
