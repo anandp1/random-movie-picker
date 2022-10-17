@@ -13,7 +13,7 @@ const MainBody: React.FC<MainBodyProps> = ({
   mutateUserData,
 }: MainBodyProps) => {
   return (
-    <div className="grid grid-cols-1 grow h-full bg-gray-200">
+    <div className="grid grid-cols-1 grow h-full bg-black">
       <div className="relative px-6 py-4 flex flex-col">
         {children}
         <NavBar mutateUserData={mutateUserData} username={username} />

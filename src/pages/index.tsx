@@ -1,10 +1,10 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
-import Image from "next/image";
 import useSWR from "swr";
 import Layout from "../components/shared/layout";
 import { fetcher } from "../lib/fetcher";
-import { Movie } from "../modal/user.modal";
+
+import MovieRow from "../components/home/movie-row";
 
 interface HomeProps {
   username: string;
@@ -25,26 +25,14 @@ const Home: NextPage = ({ username }: HomeProps) => {
     <Layout username={username} mutateUserData={mutate}>
       {data ? (
         <div className="flex flex-col gap-y-3">
-          {Object.keys(data.moviesByUser).map((username) => {
+          {Object.keys(data.moviesByUser).map((username, index) => {
             return (
-              <div key={username}>
-                <h1 className="text-black font-semibold text-4xl mb-2">
-                  {data.moviesByUser[username].displayName}
-                </h1>
-                <div className="flex flex-row gap-x-2">
-                  {data.moviesByUser[username].movies?.map((movie: Movie) => {
-                    return (
-                      <Image
-                        key={movie.imbdId}
-                        height={280}
-                        width={210}
-                        src={movie.imageUrl}
-                        alt={movie.title}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
+              <MovieRow
+                key={username}
+                username={username}
+                randomId={index}
+                data={data}
+              />
             );
           })}
         </div>

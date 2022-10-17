@@ -33,7 +33,12 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
 
 const ShuffleModalFields: React.FC = () => {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState<string[]>([]);
+  const [personName, setPersonName] = React.useState<string[]>([
+    "Anand",
+    "Alborz",
+    "Umair",
+    "Saad",
+  ]);
 
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {
