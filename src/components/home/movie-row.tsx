@@ -25,7 +25,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
 
   return (
     <>
-      <h2 className="text-white font-bold sm:text-lg md:text-xl lg:text-3xl px-2">
+      <h2 className="text-white sm:text-lg md:text-xl lg:text-3xl px-2">
         {data.moviesByUser[username].displayName}
       </h2>
       <div className="relative flex items-center group">

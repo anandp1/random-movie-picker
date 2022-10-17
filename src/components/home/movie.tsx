@@ -11,7 +11,7 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
   return (
     <div
       key={movie.imbdId}
-      className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2"
+      className="w-[130px] sm:w-[150px] md:w-[180px] lg:w-[220px] inline-block cursor-pointer relative p-2"
     >
       <img
         className="w-full h-auto block"
