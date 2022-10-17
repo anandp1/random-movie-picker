@@ -87,7 +87,7 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
     <Dialog
       open={showSearch}
       onClose={() => setShowSearch(false)}
-      className="fixed inset-0 p-4 pt-40 overflow-y-auto z-50"
+      className="fixed inset-0 px-8 sm:px-4 pt-40 overflow-y-auto z-50"
     >
       <Dialog.Overlay className="fixed inset-0 bg-gray-500 opacity-75 "></Dialog.Overlay>
 

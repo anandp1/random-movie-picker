@@ -62,12 +62,18 @@ const ShuffleModalFields: React.FC = () => {
     alert(randomMovie.title);
   };
 
+  const width =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
+
+  const widthForm = width <= 640 ? 375 : 450;
   return (
     <div className="flex flex-col gap-y-3">
       <p className="text-center text-xl font-medium">Shuffle</p>
       <hr />
       <div className="w-full">
-        <FormControl sx={{ m: 1, width: 450 }}>
+        <FormControl sx={{ m: 1, width: widthForm }}>
           <InputLabel id="demo-multiple-chip-label">Select</InputLabel>
           <Select
             labelId="demo-multiple-chip-label"
