@@ -32,7 +32,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
         <div className="group relative hidden sm:block h-full">
           <ChevronLeftIcon
             onClick={slideLeft}
-            className="absolute top-0 bottom-0 left-2 z-40 m-auto w-10 cursor-pointer opacity-0 text-white group-hover:bg-black group-hover:opacity-100 group-hover:bg-opacity-40 h-full"
+            className="absolute top-0 bottom-0 left-[0.4px] z-40 m-auto w-10 cursor-pointer opacity-0 text-white group-hover:bg-black group-hover:opacity-100 group-hover:bg-opacity-40 h-full"
           />
         </div>
         <div
