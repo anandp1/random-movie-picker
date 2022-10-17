@@ -29,10 +29,12 @@ const MovieRow: React.FC<MovieRowProps> = ({
         {data.moviesByUser[username].displayName}
       </h2>
       <div className="relative flex items-center group">
-        <ChevronLeftIcon
-          onClick={slideLeft}
-          className="h-8 w-8 left-2 bg-white rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
-        />
+        <div className="group relative">
+          <ChevronLeftIcon
+            onClick={slideLeft}
+            className="absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 text-white"
+          />
+        </div>
         <div
           id={"slider" + randomId}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
@@ -41,10 +43,12 @@ const MovieRow: React.FC<MovieRowProps> = ({
             return <MovieComponent movie={movie} key={movie.title} />;
           })}
         </div>
-        <ChevronRightIcon
-          onClick={slideRight}
-          className="h-8 w-8 right-1 bg-white rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
-        />
+        <div className="group relative">
+          <ChevronRightIcon
+            onClick={slideRight}
+            className="absolute top-0 bottom-0 right-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 text-white"
+          />
+        </div>
       </div>
     </>
   );
