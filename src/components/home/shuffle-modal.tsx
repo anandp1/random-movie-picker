@@ -55,7 +55,6 @@ const ShuffleModal: React.FC<ShuffleModalProps> = ({
         </div>
       </Dialog>
     </Transition.Root>
-    //
   );
 };
 
