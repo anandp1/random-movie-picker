@@ -67,8 +67,6 @@ const ShuffleModalFields: React.FC<ShuffleModalFieldsProps> = ({
       users: personName,
     });
 
-    console.log(movies);
-
     const randomMovie =
       movies.data.allMovies[
         Math.floor(Math.random() * movies.data.allMovies.length)
