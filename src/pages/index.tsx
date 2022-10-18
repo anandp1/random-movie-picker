@@ -15,6 +15,8 @@ interface HomeProps {
 const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
   const { data, error, mutate } = useSWR("/api/user-movies", fetcher);
 
+  const yourUsername = username;
+
   if (error) {
     return (
       <Layout
@@ -40,6 +42,7 @@ const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
               <MovieRow
                 key={username}
                 username={username}
+                yourUsername={yourUsername}
                 randomId={index}
                 data={data}
               />

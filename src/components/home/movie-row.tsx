@@ -6,12 +6,14 @@ interface MovieRowProps {
   data: any;
   randomId: number;
   username: string;
+  yourUsername: string;
 }
 
 const MovieRow: React.FC<MovieRowProps> = ({
   data,
   randomId,
   username,
+  yourUsername,
 }: MovieRowProps) => {
   const slideLeft = () => {
     let slider = document.getElementById("slider" + randomId);
@@ -26,7 +28,9 @@ const MovieRow: React.FC<MovieRowProps> = ({
   return (
     <>
       <h2 className="text-white sm:text-lg md:text-xl lg:text-3xl px-2">
-        {data.moviesByUser[username].displayName}
+        {yourUsername === username
+          ? "Your Picks"
+          : data.moviesByUser[username].displayName}
       </h2>
       <div className="relative flex items-center group">
         <div className="group relative hidden sm:block h-full">
