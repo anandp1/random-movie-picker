@@ -1,5 +1,7 @@
 ![logo](./public/logo.png "Roundtable")
 
+
+
 Rountable is a web app designed for friends! Each friend creates a watchlist of movies - and on your next movie night, Roundtable will pick one movie out of everyone's combined lists to watch.
 
 ## Getting started

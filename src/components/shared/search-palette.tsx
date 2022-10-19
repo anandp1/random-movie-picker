@@ -66,7 +66,7 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
       username,
     });
 
-    mutateUserData();
+    mutateUserData;
     setShowSearch(false);
   };
 
@@ -88,20 +88,20 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
       onClose={() => setShowSearch(false)}
       className="fixed inset-0 px-8 sm:px-4 pt-40 overflow-y-auto z-50"
     >
-      <Dialog.Overlay className="fixed inset-0 bg-gray-500 opacity-75 "></Dialog.Overlay>
+      <Dialog.Overlay className="fixed inset-0 bg-neutral-500 opacity-75 "></Dialog.Overlay>
 
       <Combobox
         onChange={setQuery}
         as="div"
-        className="relative bg-gray-700 max-w-xl mx-auto rounded-xl shadow-2xl flex flex-col max-h-[70vh] overflow-y-auto scrollbar-hide"
+        className="relative bg-neutral-700 max-w-xl mx-auto rounded-xl shadow-2xl flex flex-col max-h-[70vh] overflow-y-auto scrollbar-hide"
         value={query}
       >
-        <div className="flex items-center px-4 mx-4 my-4 bg-gray-700 rounded-xl border-gray-500 hover:border-gray-200 border">
-          <SearchIcon className="mr-4 h-6 w-6 text-gray-400" />
+        <div className="flex items-center px-4 mx-4 my-4 bg-neutral-700 rounded-xl border-neutral-500 hover:border-neutral-200 border">
+          <SearchIcon className="mr-4 h-6 w-6 text-neutral-400" />
           <Combobox.Input
             onChange={debouncedChangeHandler}
-            placeholder="Search Movies..."
-            className="w-full bg-transparent outline-none border-none text-sm text-gray-400 placeholder-gray-400 h-12"
+            placeholder="Add Movie..."
+            className="w-full bg-transparent outline-none border-none text-sm text-neutral-400 placeholder-neutral-400 h-12"
           />
         </div>
 
@@ -113,7 +113,7 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
                 .map((movie: any) => (
                   <div key={movie.Title} className="p-4 text-sm text-white">
                     <button
-                      className="rounded-lg shadow-md w-full group relative bg-gray-800"
+                      className="rounded-lg shadow-md w-full group relative bg-neutral-800"
                       disabled={username === SignInRole.GUEST}
                       onClick={() =>
                         handleSelectedMovie(
@@ -124,10 +124,10 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
                       }
                     >
                       <span className="hidden group-hover:block absolute right-[44%] top-1/2">
-                        <PlusCircleIcon className="w-10 h-10 text-gray-300" />
+                        <PlusCircleIcon className="w-10 h-10 text-neutral-300" />
                       </span>
 
-                      <div className="flex flex-row content-center gap-x-4 hover:opacity-50 px-4 py-8">
+                      <div className="flex flex-row gap-x-4 hover:opacity-50 px-4 py-8 text-left">
                         <Image
                           src={movie.Poster}
                           width={100}
