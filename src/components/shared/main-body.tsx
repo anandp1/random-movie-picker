@@ -20,7 +20,7 @@ const MainBody: React.FC<MainBodyProps> = ({
     <div className="grid grid-cols-1 grow h-full bg-neutral-900">
       <div className="relative px-6 py-4 flex flex-col">
         <img
-          className="w-[200px] sm:w-[250px] lg:w-[300px] my-9 mx-4"
+          className="w-[270px] sm:w-[250px] lg:w-[300px] my-9 mx-auto md:mx-4"
           src={"logo.png"}
           alt={"Logo"}
         />
