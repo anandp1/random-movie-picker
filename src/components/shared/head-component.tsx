@@ -8,7 +8,7 @@ const HeadComponent: React.FC = ({ children }: HeadProps) => {
   return (
     <Head>
       {children}
-      <title>Movie Randomizer</title>
+      <title>Roundtable</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
   );
