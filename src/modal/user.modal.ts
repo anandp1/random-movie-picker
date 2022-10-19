@@ -46,6 +46,22 @@ const addMovieToUser = async (
   );
 };
 
+const deleteMovieFromUser = async (
+  username: string,
+  title: string,
+  imbdId: string,
+  imageUrl: string
+): Promise<void> => {
+  const client = await getMongoClient();
+  const db = client.db(process.env.MONGODB_NAME);
+
+  const userCollection: Collection<User> = db.collection("users");
+  await userCollection.updateOne(
+    { username },
+    { $push: { movies: { title, imbdId, imageUrl } } }
+  );
+};
+
 const getMoviesByUser = async (): Promise<MovieByUser> => {
   const client = await getMongoClient();
   const db = client.db(process.env.MONGODB_NAME);
