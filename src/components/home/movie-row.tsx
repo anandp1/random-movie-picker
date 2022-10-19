@@ -43,8 +43,8 @@ const MovieRow: React.FC<MovieRowProps> = ({
           id={"slider" + randomId}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
-          {data.moviesByUser[username].movies?.map((movie: Movie) => {
-            return <MovieComponent movie={movie} key={movie.title} />;
+          {data.moviesByUser[username].movies?.map((movie: Movie, index) => {
+            return <MovieComponent movie={movie} key={index} />;
           })}
         </div>
         <div className="group relative hidden sm:block h-full">
