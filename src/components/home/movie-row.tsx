@@ -27,7 +27,10 @@ const MovieRow: React.FC<MovieRowProps> = ({
 
   return (
     <>
-      <h2 className="text-white my-5 mx-9 px-9 sm:text-lg md:text-xl lg:text-2xl font-bold px-2 antialised tracking-wider" id="nav-title">
+      <h2
+        className="text-white my-5 sm:mx-9 sm:text-lg md:text-xl lg:text-2xl font-bold px-2 antialised tracking-wider"
+        id="nav-title"
+      >
         {yourUsername === username
           ? "Your Picks"
           : data.moviesByUser[username].displayName}
@@ -40,8 +43,8 @@ const MovieRow: React.FC<MovieRowProps> = ({
           />
         </div>
         <div
-          id={"slider" + randomId} 
-          className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative mx-9 tracking-wider"
+          id={"slider" + randomId}
+          className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative sm:mx-9 tracking-wider"
         >
           {data.moviesByUser[username].movies?.map((movie: Movie, index) => {
             return <MovieComponent movie={movie} key={index} />;

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { KeyedMutator } from "swr";
 import { SafeUser } from "../../modal/user.modal";
 import { NavBar } from "./nav-bar";
@@ -18,10 +19,10 @@ const MainBody: React.FC<MainBodyProps> = ({
   return (
     <div className="grid grid-cols-1 grow h-full bg-neutral-900">
       <div className="relative px-6 py-4 flex flex-col">
-       <img
-        className="w-[200px] sm:w-[250px] lg:w-[300px] my-9 mx-4"
-        src={"logo.png"}
-        alt={"Logo"}
+        <img
+          className="w-[200px] sm:w-[250px] lg:w-[300px] my-9 mx-4"
+          src={"logo.png"}
+          alt={"Logo"}
         />
         {children}
         <NavBar
