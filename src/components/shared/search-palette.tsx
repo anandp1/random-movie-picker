@@ -15,10 +15,11 @@ import { debounce } from "lodash";
 import { fetcher } from "../../lib/fetcher";
 import Image from "next/image";
 import axios from "axios";
+import { SignInRole } from "../../pages/sign-in";
 
 const SyncSection = (
   <div className="w-full flex justify-center">
-    <SyncIcon className="animate-spin h-8 w-8 mr-3 mt-3 mb-3" />
+    <SyncIcon className="animate-spin h-8 w-8 mr-3 mt-3 mb-5 text-white" />
   </div>
 );
 
@@ -113,6 +114,7 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
                   <div key={movie.Title} className="p-4 text-sm text-white">
                     <button
                       className="rounded-lg shadow-md w-full group relative bg-gray-800"
+                      disabled={username === SignInRole.GUEST}
                       onClick={() =>
                         handleSelectedMovie(
                           movie.Title,

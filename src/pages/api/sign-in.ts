@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getUser } from "../../modal/user.modal";
+import { SignInRole } from "../sign-in";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
@@ -8,6 +9,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     let response;
+
+    if (req.body.username === SignInRole.GUEST) {
+      response = {
+        email: SignInRole.GUEST,
+        password: "123456",
+      };
+
+      return res.status(200).json(response);
+    }
 
     const user = await getUser(req.body.username);
 

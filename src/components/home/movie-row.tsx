@@ -6,12 +6,14 @@ interface MovieRowProps {
   data: any;
   randomId: number;
   username: string;
+  yourUsername: string;
 }
 
 const MovieRow: React.FC<MovieRowProps> = ({
   data,
   randomId,
   username,
+  yourUsername,
 }: MovieRowProps) => {
   const slideLeft = () => {
     let slider = document.getElementById("slider" + randomId);
@@ -26,7 +28,9 @@ const MovieRow: React.FC<MovieRowProps> = ({
   return (
     <>
       <h2 className="text-white my-5 mx-9 px-9 sm:text-lg md:text-xl lg:text-2xl font-bold px-2 antialised tracking-wider" id="nav-title">
-        {data.moviesByUser[username].displayName}
+        {yourUsername === username
+          ? "Your Picks"
+          : data.moviesByUser[username].displayName}
       </h2>
       <div className="relative flex items-center group">
         <div className="group relative hidden sm:block h-full">
@@ -39,8 +43,8 @@ const MovieRow: React.FC<MovieRowProps> = ({
           id={"slider" + randomId} 
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative mx-9 tracking-wider"
         >
-          {data.moviesByUser[username].movies?.map((movie: Movie) => {
-            return <MovieComponent movie={movie} key={movie.title} />;
+          {data.moviesByUser[username].movies?.map((movie: Movie, index) => {
+            return <MovieComponent movie={movie} key={index} />;
           })}
         </div>
         <div className="group relative hidden sm:block h-full">

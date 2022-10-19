@@ -3,13 +3,22 @@ import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
+export enum SignInRole {
+  USER = "user",
+  GUEST = "guest",
+}
+
 const SignIn: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const router = useRouter();
 
-  const handleSignIn = () => {
+  const handleSignIn = (role: SignInRole) => {
+    if (role === SignInRole.GUEST) {
+      setUsername(SignInRole.GUEST);
+    }
+
     signIn("credentials", {
       username,
       password,
@@ -70,11 +79,34 @@ const SignIn: React.FC = () => {
             </div>
             <div>
               <button
-                onClick={handleSignIn}
+                onClick={() => handleSignIn(SignInRole.USER)}
                 className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 Sign in
               </button>
+            </div>
+          </div>
+          <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="bg-white px-2 text-gray-500">
+                  Or continue with
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <div>
+                <button
+                  onClick={() => handleSignIn(SignInRole.GUEST)}
+                  className="flex w-full justify-center rounded-md border border-transparent bg-indigo-800 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                  Guest Sign in
+                </button>
+              </div>
             </div>
           </div>
         </div>

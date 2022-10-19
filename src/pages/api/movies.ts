@@ -13,7 +13,7 @@ export default async function handler(
 
   const moviesByUser = await getMoviesByUser();
 
-  const filteredResult = result.data.Search.filter((movie: any) => {
+  const filteredResult = result.data.Search?.filter((movie: any) => {
     return !moviesByUser[req.query.username as string]?.movies?.some(
       (userMovie: any) => userMovie.title === movie.Title
     );
