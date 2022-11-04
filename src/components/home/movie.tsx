@@ -26,7 +26,6 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
           {movie.title}
         </p>
       </div>
-    </div>
     </Fade>
   );
 };

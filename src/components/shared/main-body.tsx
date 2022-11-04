@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { KeyedMutator } from "swr";
 import { SafeUser } from "../../modal/user.modal";
 import { NavBar } from "./nav-bar";
