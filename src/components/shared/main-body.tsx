@@ -30,11 +30,11 @@ const MainBody: React.FC<MainBodyProps> = ({
         alt={"Logo"}
         /> */}
         {children}
-        <NavBar
+        {/* <NavBar
           mutateUserData={mutateUserData}
           availableUsers={availableUsers}
           username={username}
-        />
+        /> */}
       </div>
     </div>
   );

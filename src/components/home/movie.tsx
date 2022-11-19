@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { Movie } from "../../modal/user.modal";
-import { Fade } from "react-reveal";
 
 export interface MovieComponentProps {
   movie: Movie;
@@ -10,7 +9,6 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
   movie,
 }: MovieComponentProps) => {
   return (
-    <Fade left duration={1000}>
       <div
         key={movie.imbdId}
         className="w-[130px] sm:w-[150px] md:w-[180px] lg:w-[220px] inline-block cursor-pointer relative p-2 sm:mx-4 md:mx-7"
@@ -26,7 +24,6 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
           </p>
         </div>
       </div>
-    </Fade>
   );
 };
 export default MovieComponent;
