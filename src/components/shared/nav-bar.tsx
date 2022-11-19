@@ -45,12 +45,12 @@ const NavBar = ({
           >
             <SearchIcon className="w-7 h-7 mx-auto text-white" />
           </button>
-          <button
+          {/* <button
             className="h-7 w-11 shadow-lg hover:scale-125"
             onClick={() => setShowShuffle(true)}
           >
             <ShuffleIcon className="w-7 h-7 mx-auto text-white" />
-          </button>
+          </button> */}
         </div>
       </div>
     </>
