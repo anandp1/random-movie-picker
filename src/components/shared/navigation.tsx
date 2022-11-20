@@ -28,7 +28,6 @@ interface NavigationProps {
       )}
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-            {/* <Bounce> */}
           <div className="relative flex lg:w-auto lg:static mt-6">
             <a href="/">
             <img
@@ -42,11 +41,8 @@ interface NavigationProps {
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
-              {/* <i className="fas fa-bars"></i> */}
             </button>
           </div>
-          {/* </Bounce>
-          <Fade duration={1000}> */}
           <div
             className={
               "lg:flex flex-grow items-center" +
@@ -67,7 +63,6 @@ interface NavigationProps {
               </li>
             </ul>
           </div>
-        {/* </Fade> */}
         </div>
       </nav>
     </>

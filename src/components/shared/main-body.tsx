@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { KeyedMutator } from "swr";
 import { SafeUser } from "../../modal/user.modal";
-import { NavBar } from "./nav-bar";
 import { Navigation } from "./navigation";
 
 interface MainBodyProps {
@@ -24,17 +23,7 @@ const MainBody: React.FC<MainBodyProps> = ({
           mutateUserData={mutateUserData}
           availableUsers={availableUsers}
           username={username}/>
-       {/* <img
-        className="w-[200px] sm:w-[250px] lg:w-[300px] my-9 mx-4"
-        src={"logo.png"}
-        alt={"Logo"}
-        /> */}
         {children}
-        {/* <NavBar
-          mutateUserData={mutateUserData}
-          availableUsers={availableUsers}
-          username={username}
-        /> */}
       </div>
     </div>
   );

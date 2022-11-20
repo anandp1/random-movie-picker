@@ -66,13 +66,12 @@ const MovieRow: React.FC<MovieRowProps> = ({
           {yourUsername === username && (
             <button
               className="opacity-90 hover:opacity-70 top-1 bottom-0 left-5 relative m-auto"
-              // onClick={() => setShowSearch(true)}
+              // Onclick edit function
             >
               <PencilIcon className="w-6 ml-2 mt-9 text-content-center white" />
             </button>
           )}
         </h2>
-
         <div></div>
         <div></div>
       </div>
