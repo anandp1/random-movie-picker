@@ -3,6 +3,8 @@ import { KeyedMutator } from "swr";
 import ShuffleModal from "../home/shuffle-modal";
 import { SafeUser } from "../../modal/user.modal";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
+import { Fade } from "react-awesome-reveal";
+import { Bounce } from "react-awesome-reveal";
 
 interface NavigationProps {
     username: string;
@@ -28,6 +30,7 @@ interface NavigationProps {
       )}
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+            <Bounce>
           <div className="relative flex lg:w-auto lg:static mt-6">
             <a href="/">
             <img
@@ -43,6 +46,8 @@ interface NavigationProps {
             >
             </button>
           </div>
+          </Bounce>
+          <Fade>
           <div
             className={
               "lg:flex flex-grow items-center" +
@@ -63,6 +68,7 @@ interface NavigationProps {
               </li>
             </ul>
           </div>
+        </Fade>
         </div>
       </nav>
     </>
