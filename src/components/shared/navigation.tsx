@@ -30,15 +30,15 @@ interface NavigationProps {
         />
       )}
 
-      <nav className="relative flex flex-wrap items-center justify-between px-2 my-3">
-        <div className="container flex flex-wrap items-center justify-between px-4 mx-auto ">
+      <nav className="relative flex flex-wrap items-center justify-between sm:px-2 sm:my-3">
+        <div className="container flex flex-wrap items-center justify-between sm:px-4 mx-auto ">
 
           {/* logo */}
           <Bounce>
-            <div className="relative flex lg:w-auto lg:static mt-6 hover:opacity-75">
+            <div className="relative flex lg:static sm:mt-6 hover:opacity-75">
               <a href="/">
               <img
-              className="w-[250px] lg:w-[300px] mx-8 mb-8 "
+              className="w-[240px] lg:w-[300px] sm:mx-8 my-2 sm:mb-8 "
               src={"logo.png"}
               alt={"Logo"}
               />
@@ -57,17 +57,17 @@ interface NavigationProps {
             <div className={"sm:flex flex-grow items-center" + (navbarOpen ? " flex" : " flex")}>
               <ul className="flex flex-row list-none lg:ml-auto">
                 {/* shuffle */}
-                <li className="nav-item">
-                  <button className = "mx-3 flex cursor-pointer items-center text-white hover:opacity-75" onClick={() => setShowShuffle(true)}>
+                <li className="nav-item mt-1">
+                  <button className = "mx-2 flex cursor-pointer items-center text-white hover:opacity-75" onClick={() => setShowShuffle(true)}>
                     <span className="px-2 sm:block hidden sm:text-md md:text-lg lowercase font-bold tracking-wider">Shuffle</span>
-                    <ShuffleIcon className="text-white w-6 h-6" />
+                    <ShuffleIcon className="text-white w-7 h-7" />
                   </button>
                 </li>
                 {/* settings */}
-                <li className="nav-item">
+                <li className="nav-item mt-1">
                   <button className = "mx-2 flex cursor-pointer items-center text-white hover:opacity-75">
                     <span className="px-2 sm:block hidden sm:text-md md:text-lg lowercase font-bold tracking-wider">Settings</span>
-                    <SettingsIcon className="text-white w-6 h-6" />
+                    <SettingsIcon className="text-white w-7 h-7" />
                   </button>
                 </li>
               </ul>
