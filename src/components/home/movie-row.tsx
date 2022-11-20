@@ -45,68 +45,64 @@ const MovieRow: React.FC<MovieRowProps> = ({
           mutateUserData={mutateUserData}
         />
       )}
+      <div className="flex flex-col">
+        <div className="flex flex-row my-6 h-full ml-10 sm:ml-14">
+          <h2
+            className="text-white col-span-6 sm:text-lg md:text-xl lg:text-2xl font-bold px-2 tracking-wider"
+            id="nav-title"
+          >
+            {yourUsername === username
+              ? "Your Picks"
+              : data.moviesByUser[username].displayName}
+          </h2>
 
-      <div className="grid grid-cols-12 my-6 h-full">
-        <div></div>
-        <div></div>
-        <h2
-          className="text-white col-span-6 sm:text-lg md:text-xl lg:text-2xl font-bold px-2 antialised tracking-wider"
-          id="nav-title"
-        >
-          {yourUsername === username
-            ? "Your Picks"
-            : data.moviesByUser[username].displayName}
           {yourUsername === username && (
             <button
-              className="opacity-90 hover:opacity-70 top-1 bottom-0 left-5 relative m-auto content-center"
+              className="opacity-90 hover:opacity-70  text-white"
               onClick={() => setShowSearch(true)}
             >
-              <PlusCircleIcon className="w-6 text-content-center items-center white" />
+              <PlusCircleIcon className="w-6 h-6" />
             </button>
           )}
           {yourUsername === username && (
             <button
-              className="opacity-90 hover:opacity-70 top-1 bottom-0 left-5 relative m-auto"
+              className="opacity-90 hover:opacity-70  text-white"
               // Onclick edit function
             >
-              <PencilIcon className="w-6 ml-2 mt-9 text-content-center white" />
+              <PencilIcon className="w-6 h-6" />
             </button>
           )}
-        </h2>
-        <div></div>
-        <div></div>
-      </div>
-
-      <Fade direction={"left"} duration={2000}>
-        <div className="grid grid-cols-12">
-          <div></div>
-
-          <div className="group relative hidden sm:block h-full px-9">
-            <ChevronLeftIcon
-              onClick={slideLeft}
-              className="absolute top-0 bottom-0 right-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
-            />
-          </div>
-
-          <div
-            id={"slider" + randomId}
-            className="w-full h-full mb-3 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative antialiased tracking-wider col-span-8"
-          >
-            {data.moviesByUser[username].movies?.map((movie: Movie, index) => {
-              return <MovieComponent movie={movie} key={index} />;
-            })}
-          </div>
-
-          <div className="group relative hidden sm:block h-full px-2">
-            <ChevronRightIcon
-              onClick={slideRight}
-              className="absolute top-0 bottom-0 left-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
-            />
-          </div>
-
-          <div></div>
         </div>
-      </Fade>
+
+        <Fade direction={"left"} duration={2000}>
+          <div className="flex flex-row mx-14">
+            <div className="group relative hidden sm:block h-full px-9 my-auto">
+              <ChevronLeftIcon
+                onClick={slideLeft}
+                className="absolute top-0 bottom-0 right-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
+              />
+            </div>
+
+            <div
+              id={"slider" + randomId}
+              className="w-full h-full mb-3 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative antialiased tracking-wider col-span-8"
+            >
+              {data.moviesByUser[username].movies?.map(
+                (movie: Movie, index) => {
+                  return <MovieComponent movie={movie} key={index} />;
+                }
+              )}
+            </div>
+
+            <div className="group relative hidden sm:block h-full px-9 my-auto">
+              <ChevronRightIcon
+                onClick={slideRight}
+                className="absolute top-0 bottom-0 left-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
+              />
+            </div>
+          </div>
+        </Fade>
+      </div>
     </>
   );
 };
