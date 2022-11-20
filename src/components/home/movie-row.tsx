@@ -58,7 +58,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
 
           {yourUsername === username && (
             <button
-              className="opacity-90 hover:opacity-70  text-white"
+              className="opacity-90 hover:opacity-70  text-white mx-1"
               onClick={() => setShowSearch(true)}
             >
               <PlusCircleIcon className="w-6 h-6" />
@@ -66,7 +66,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
           )}
           {yourUsername === username && (
             <button
-              className="opacity-90 hover:opacity-70  text-white"
+              className="opacity-90 hover:opacity-70  text-white mx-1"
               // Onclick edit function
             >
               <PencilIcon className="w-6 h-6" />
@@ -85,7 +85,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
 
             <div
               id={"slider" + randomId}
-              className="w-full h-full mb-3 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative antialiased tracking-wider col-span-8"
+              className="w-full h-full mb-3 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative antialiased tracking-wider"
             >
               {data.moviesByUser[username].movies?.map(
                 (movie: Movie, index) => {
