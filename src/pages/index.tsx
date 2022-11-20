@@ -45,6 +45,7 @@ const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
                 yourUsername={yourUsername}
                 randomId={index}
                 data={data}
+                mutateUserData={mutate}
               />
             );
           })}

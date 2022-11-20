@@ -36,7 +36,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
 
   return (
     <>
-    {showSearch && (
+      {showSearch && (
         <SearchPalette
           username={username}
           showSearch={showSearch}
@@ -46,36 +46,40 @@ const MovieRow: React.FC<MovieRowProps> = ({
       )}
 
       <div className="grid grid-cols-12 my-6 h-full">
-        <div></div> 
         <div></div>
-      <h2 className="text-white col-span-6 sm:text-lg md:text-xl lg:text-2xl font-bold px-2 antialised tracking-wider" id="nav-title">
-        {yourUsername === username
-          ? "Your Picks"
-          : data.moviesByUser[username].displayName}
-        {yourUsername === username
-          && <button
-            className="opacity-90 hover:opacity-70 absolute top-1 bottom-0 left-5 relative m-auto content-center"
-            onClick={() => setShowSearch(true)}
-          >
-            <PlusCircleIcon className="w-6 text-content-center items-center white" />
-          </button>}
-        {yourUsername === username
-          && <button
-            className="opacity-90 hover:opacity-70 absolute top-1 bottom-0 left-5 relative m-auto"
-            // onClick={() => setShowSearch(true)}
-          >
-            <PencilIcon className="w-6 ml-2 mt-9 text-content-center white" />
-          </button>}          
-      </h2> 
+        <div></div>
+        <h2
+          className="text-white col-span-6 sm:text-lg md:text-xl lg:text-2xl font-bold px-2 antialised tracking-wider"
+          id="nav-title"
+        >
+          {yourUsername === username
+            ? "Your Picks"
+            : data.moviesByUser[username].displayName}
+          {yourUsername === username && (
+            <button
+              className="opacity-90 hover:opacity-70 top-1 bottom-0 left-5 relative m-auto content-center"
+              onClick={() => setShowSearch(true)}
+            >
+              <PlusCircleIcon className="w-6 text-content-center items-center white" />
+            </button>
+          )}
+          {yourUsername === username && (
+            <button
+              className="opacity-90 hover:opacity-70 top-1 bottom-0 left-5 relative m-auto"
+              // onClick={() => setShowSearch(true)}
+            >
+              <PencilIcon className="w-6 ml-2 mt-9 text-content-center white" />
+            </button>
+          )}
+        </h2>
 
-
-      <div></div>   
-      <div></div>
-      </div>    
+        <div></div>
+        <div></div>
+      </div>
 
       <div className="grid grid-cols-12">
         <div></div>
-        <div className="ggroup relative hidden sm:block h-full px-9 flow-root">
+        <div className="ggroup relative hidden sm:block h-full px-9">
           <ChevronLeftIcon
             onClick={slideLeft}
             className="absolute top-0 bottom-0 right-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
@@ -95,7 +99,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
             className="absolute top-0 bottom-0 left-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
           />
         </div>
-        <div></div>   
+        <div></div>
       </div>
     </>
   );
