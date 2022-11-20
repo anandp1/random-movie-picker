@@ -78,32 +78,39 @@ const MovieRow: React.FC<MovieRowProps> = ({
         <div></div>
       </div>
       
-<Fade>
-      <div className="grid grid-cols-12">
-        <div></div>
-        <div className="ggroup relative hidden sm:block h-full px-9">
-          <ChevronLeftIcon
-            onClick={slideLeft}
-            className="absolute top-0 bottom-0 right-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
-          />
+      <Fade direction={"left"} duration={2000}>
+
+        <div className="grid grid-cols-12">
+
+          <div></div>
+
+          <div className="group relative hidden sm:block h-full px-9">
+            <ChevronLeftIcon
+              onClick={slideLeft}
+              className="absolute top-0 bottom-0 right-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
+            />
+          </div>
+
+          <div
+            id={"slider" + randomId}
+            className="w-full h-full mb-3 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative antialiased tracking-wider col-span-8"
+          >
+            {data.moviesByUser[username].movies?.map((movie: Movie, index) => {
+              return <MovieComponent movie={movie} key={index} />;
+            })}
+          </div>
+
+          <div className="group relative hidden sm:block h-full px-2">
+            <ChevronRightIcon
+              onClick={slideRight}
+              className="absolute top-0 bottom-0 left-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
+            />
+          </div>
+
+          <div></div>
+
         </div>
-        <div
-          id={"slider" + randomId}
-          className="w-full h-full mb-3 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative antialiased tracking-wider col-span-8"
-        >
-          {data.moviesByUser[username].movies?.map((movie: Movie, index) => {
-            return <MovieComponent movie={movie} key={index} />;
-          })}
-        </div>
-        <div className="group relative hidden sm:block h-full px-2">
-          <ChevronRightIcon
-            onClick={slideRight}
-            className="absolute top-0 bottom-0 left-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
-          />
-        </div>
-        <div></div>
-      </div>
-</Fade>
+      </Fade>
     </>
   );
 };
