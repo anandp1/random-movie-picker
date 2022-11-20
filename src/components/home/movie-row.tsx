@@ -7,7 +7,6 @@ import { SearchPalette } from "../shared/search-palette";
 import { KeyedMutator } from "swr";
 import React, { useState } from "react";
 import { Fade } from "react-awesome-reveal";
-import { Slide } from "react-awesome-reveal";
 
 interface MovieRowProps {
   data: any;
@@ -77,11 +76,9 @@ const MovieRow: React.FC<MovieRowProps> = ({
         <div></div>
         <div></div>
       </div>
-      
+
       <Fade direction={"left"} duration={2000}>
-
         <div className="grid grid-cols-12">
-
           <div></div>
 
           <div className="group relative hidden sm:block h-full px-9">
@@ -108,7 +105,6 @@ const MovieRow: React.FC<MovieRowProps> = ({
           </div>
 
           <div></div>
-
         </div>
       </Fade>
     </>
