@@ -38,7 +38,7 @@ interface NavigationProps {
             <div className="relative flex lg:static sm:mt-6 hover:opacity-75">
               <a href="/">
               <img
-              className="w-[240px] lg:w-[300px] sm:mx-8 my-2 sm:mb-8 "
+              className="w-[220px] lg:w-[300px] sm:mx-8 my-2 sm:mb-8 "
               src={"logo.png"}
               alt={"Logo"}
               />
