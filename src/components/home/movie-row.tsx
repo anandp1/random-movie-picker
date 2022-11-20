@@ -1,8 +1,6 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
+import { ChevronLeftIcon, ChevronRightIcon, PencilIcon, PlusCircleIcon } from "@heroicons/react/solid";
 import { Movie } from "../../modal/user.modal";
 import MovieComponent from "./movie";
-import { PlusCircleIcon } from "@heroicons/react/solid";
-import { PencilIcon } from "@heroicons/react/solid";
 import { SearchPalette } from "../shared/search-palette";
 import { KeyedMutator } from "swr";
 import React, { useState } from "react";

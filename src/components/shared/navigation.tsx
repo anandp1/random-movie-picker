@@ -2,20 +2,21 @@ import React from "react";
 import { KeyedMutator } from "swr";
 import ShuffleModal from "../home/shuffle-modal";
 import { SafeUser } from "../../modal/user.modal";
+import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
-import { Fade } from "react-awesome-reveal";
-import { Bounce } from "react-awesome-reveal";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { Fade, Bounce } from "react-awesome-reveal";
 
 interface NavigationProps {
-    username: string;
+  username: string;
   mutateUserData: KeyedMutator<any>;
   availableUsers: SafeUser[];
 }
 
   const Navigation = ({
     username,
-  mutateUserData,
-  availableUsers,
+    mutateUserData,
+    availableUsers,
 }: NavigationProps) => {;
   const [navbarOpen, setNavbarOpen] = React.useState(false);
     const [showShuffle, setShowShuffle] = React.useState(false);
@@ -28,50 +29,56 @@ interface NavigationProps {
           availableUsers={availableUsers}
         />
       )}
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3">
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-            <Bounce>
-          <div className="relative flex lg:w-auto lg:static mt-6">
-            <a href="/">
-            <img
-            className="w-[250px] lg:w-[300px] mx-8"
-            src={"logo.png"}
-            alt={"Logo"}
-            />
-            </a>
-            <button
-              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-              type="button"
-              onClick={() => setNavbarOpen(!navbarOpen)}
-            >
-            </button>
-          </div>
+
+      <nav className="relative flex flex-wrap items-center justify-between px-2 my-3">
+        <div className="container flex flex-wrap items-center justify-between px-4 mx-auto ">
+
+          {/* logo */}
+          <Bounce>
+            <div className="relative flex lg:w-auto lg:static mt-6 hover:opacity-75">
+              <a href="/">
+              <img
+              className="w-[250px] lg:w-[300px] mx-8 mb-8 "
+              src={"logo.png"}
+              alt={"Logo"}
+              />
+              </a>
+            </div>
           </Bounce>
+
+          {/* options */}
           <Fade>
-          <div
-            className={
-              "lg:flex flex-grow items-center" +
-              (navbarOpen ? " flex" : " hidden")
-            }
-            id="example-navbar-danger"
-          >
-            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li className="nav-item">
-                          <button
-            onClick={() => setShowShuffle(true)}
-          >
-            <span className="px-3 py-2 flex cursor-pointer items-center text-lg lowercase font-bold leading-snug text-white hover:opacity-75 antialised tracking-wider">shuffle</span>
-          </button>
-              </li>
-              <li className="nav-item">
-                <span className="px-3 py-2 flex cursor-pointer items-center text-lg lowercase font-bold leading-snug text-white hover:opacity-75 antialised tracking-wider">Settings</span>
-              </li>
-            </ul>
-          </div>
-        </Fade>
+
+            {/* dropdown menu - commented out in case we add more options */}
+            {/* <button className="text-white cursor-pointer sm:hidden hover:opacity-75" onClick={() => setNavbarOpen(!navbarOpen)}>
+              <ViewHeadlineIcon className="w-6 h-6" />
+            </button> */}
+
+            <div className={"sm:flex flex-grow items-center" + (navbarOpen ? " flex" : " flex")}>
+              <ul className="flex flex-row list-none lg:ml-auto">
+                {/* shuffle */}
+                <li className="nav-item">
+                  <button className = "mx-3 flex cursor-pointer items-center text-white hover:opacity-75" onClick={() => setShowShuffle(true)}>
+                    <span className="px-2 sm:block hidden sm:text-md md:text-lg lowercase font-bold tracking-wider">Shuffle</span>
+                    <ShuffleIcon className="text-white w-6 h-6" />
+                  </button>
+                </li>
+                {/* settings */}
+                <li className="nav-item">
+                  <button className = "mx-2 flex cursor-pointer items-center text-white hover:opacity-75">
+                    <span className="px-2 sm:block hidden sm:text-md md:text-lg lowercase font-bold tracking-wider">Settings</span>
+                    <SettingsIcon className="text-white w-6 h-6" />
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </Fade>
+
         </div>
       </nav>
+
     </>
   );
 };
-  export { Navigation };
+
+export { Navigation };
