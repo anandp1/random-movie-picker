@@ -2,7 +2,6 @@ import { KeyedMutator } from "swr";
 import { SafeUser } from "../../modal/user.modal";
 import HeadComponent from "./head-component";
 import MainBody from "./main-body";
-import { NavBar } from "./nav-bar";
 
 interface LayoutProps {
   children: React.ReactNode;
