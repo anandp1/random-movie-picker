@@ -72,7 +72,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
           )}
         </div>
 
-        <Fade direction={"left"} duration={2000} triggerOnce={true}>
+        <Fade direction={"left"} duration={2000} triggerOnce={true} cascade={true}>
           <div className="flex flex-row mx-14">
             <div className="group relative hidden sm:block h-full px-9 my-auto">
               <ChevronLeftIcon
