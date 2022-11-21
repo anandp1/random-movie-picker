@@ -35,7 +35,7 @@ interface NavigationProps {
 
           {/* logo */}
           <Bounce>
-            <div className="relative flex lg:static sm:mt-6 hover:opacity-75">
+            <div className="relative flex sm:mt-6 hover:opacity-75">
               <a href="/">
               <img
               className="w-[220px] lg:w-[300px] sm:mx-8 my-2 sm:mb-8 "
@@ -48,12 +48,10 @@ interface NavigationProps {
 
           {/* options */}
           <Fade>
-
             {/* dropdown menu - commented out in case we add more options */}
             {/* <button className="text-white cursor-pointer sm:hidden hover:opacity-75" onClick={() => setNavbarOpen(!navbarOpen)}>
               <ViewHeadlineIcon className="w-6 h-6" />
             </button> */}
-
             <div className={"sm:flex flex-grow items-center" + (navbarOpen ? " flex" : " flex")}>
               <ul className="flex flex-row list-none lg:ml-auto">
                 {/* shuffle */}
