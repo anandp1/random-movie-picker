@@ -58,9 +58,7 @@ const deleteMovieFromUser = async (
   
   const userCollection: Collection<User> = db.collection("users");
   await userCollection.updateOne({username}, {$pull: {movies: {imbdId, title, imageUrl}}});
- 
-  //Alborz if you're reading this, go fuck yourself you ffucking brown piece of, jungle diff
-};
+ };
 
 const getMoviesByUser = async (): Promise<MovieByUser> => {
   const client = await getMongoClient();
