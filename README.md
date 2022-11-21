@@ -29,5 +29,7 @@ To run on a different port set the `PORT` environment variable and run `npm star
 ## 📝 Authors
 - [Alborz Khakbazan](https://www.linkedin.com/in/alborzk/)
 - [Anand Patel](https://www.linkedin.com/in/anand-patel-b20954202/)
+- [Ying Liang](https://www.linkedin.com/in/ying-liang-26451a243/)
+- [Jonathan Placatka](https://www.linkedin.com/in/jonathan-placatka-26b06b24b/)
 
 *Please note: Roundtable is still a WIP*

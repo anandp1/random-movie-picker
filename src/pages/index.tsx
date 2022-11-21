@@ -24,7 +24,7 @@ const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
         mutateUserData={mutate}
         availableUsers={availableUsers}
       >
-        <p>Failed to load</p>
+        <p className = "text-white text-bold tracking-wider">Failed to load</p>
       </Layout>
     );
   }
@@ -51,7 +51,7 @@ const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
           })}
         </div>
       ) : (
-        <p>Loading...</p>
+        <p className = "text-white text-bold tracking-wider">Loading...</p>
       )}
     </Layout>
   );
