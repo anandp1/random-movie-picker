@@ -34,7 +34,7 @@ interface NavigationProps {
         <div className="container flex flex-wrap items-center justify-between sm:px-4 mx-auto ">
 
           {/* logo */}
-          <Bounce>
+          <Bounce triggerOnce={true}>
             <div className="relative flex sm:mt-6 hover:opacity-75">
               <a href="/">
               <img
