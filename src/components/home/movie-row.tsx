@@ -1,6 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import { Movie } from "../../modal/user.modal";
 import MovieComponent from "./movie";
+import { CakeIcon } from "@heroicons/react/solid";
 import { PlusCircleIcon } from "@heroicons/react/solid";
 import { PencilIcon } from "@heroicons/react/solid";
 import { SearchPalette } from "../shared/search-palette";
@@ -32,9 +33,23 @@ const MovieRow: React.FC<MovieRowProps> = ({
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
+  const deleteSelectedMovie = (
+    // title: string,
+    // imdbID: string,
+    // imageUrl: string
+  ) => {
+
+    // const allMovies = data.movieResults?
+    //   .filter((movie: any) => movie.Poster !== "N/A")
+    //   .map((movie: any) => ();
+
+    console.log(data);
+  }
+
+
   const [showSearch, setShowSearch] = useState(false);
 
-  return (
+  return (  
     <>
       {showSearch && (
         <SearchPalette
@@ -71,6 +86,14 @@ const MovieRow: React.FC<MovieRowProps> = ({
               <PencilIcon className="w-6 ml-2 mt-9 text-content-center white" />
             </button>
           )}
+          {yourUsername === username && (
+            <button
+              className="opacity-90 hover:opacity-70 top-1 bottom-0 left-5 relative m-auto"
+               onClick={deleteSelectedMovie}
+            >
+              <CakeIcon className="w-6 ml-2 mt-9 text-content-center white" />
+            </button>
+          )}
         </h2>
 
         <div></div>
@@ -85,12 +108,13 @@ const MovieRow: React.FC<MovieRowProps> = ({
             className="absolute top-0 bottom-0 right-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
           />
         </div>
+        {/* This is the rows of the movies */}
         <div
           id={"slider" + randomId}
           className="w-full h-full mb-3 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative antialiased tracking-wider col-span-8"
         >
-          {data.moviesByUser[username].movies?.map((movie: Movie, index) => {
-            return <MovieComponent movie={movie} key={index} />;
+          {data.moviesByUser[username].movies?.map((movie: Movie, index) => {   
+            return <MovieComponent movie={movie} key={index} yourUsername={yourUsername} mutateUserData={mutateUserData} />;
           })}
         </div>
         <div className="group relative hidden sm:block h-full px-2">
