@@ -31,20 +31,6 @@ const MovieRow: React.FC<MovieRowProps> = ({
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
-  const deleteSelectedMovie = (
-    // title: string,
-    // imdbID: string,
-    // imageUrl: string
-  ) => {
-
-    // const allMovies = data.movieResults?
-    //   .filter((movie: any) => movie.Poster !== "N/A")
-    //   .map((movie: any) => ();
-
-    console.log(data);
-  }
-
-
   const [showSearch, setShowSearch] = useState(false);
 
   return (  
