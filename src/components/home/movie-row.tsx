@@ -72,15 +72,16 @@ const MovieRow: React.FC<MovieRowProps> = ({
           )}
         </div>
 
-        <Fade direction={"left"} duration={2000} triggerOnce={true} cascade={true}>
           <div className="flex flex-row mx-14">
+            <Fade delay={2000} triggerOnce={true} cascade={true}>
             <div className="group relative hidden sm:block h-full px-9 my-auto">
               <ChevronLeftIcon
                 onClick={slideLeft}
                 className="absolute top-0 bottom-0 right-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
               />
             </div>
-
+            </Fade>
+            <Fade direction={"left"} duration={2000} triggerOnce={true} cascade={true}>
             <div
               id={"slider" + randomId}
               className="w-full h-full mb-3 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative antialiased tracking-wider"
@@ -91,15 +92,17 @@ const MovieRow: React.FC<MovieRowProps> = ({
                 }
               )}
             </div>
-
+            </Fade>
+            <Fade delay={2000} triggerOnce={true} cascade={true}>
             <div className="group relative hidden sm:block h-full px-9 my-auto">
               <ChevronRightIcon
                 onClick={slideRight}
                 className="absolute top-0 bottom-0 left-12 m-auto w-10 h-10 cursor-pointer opacity-10 hover:opacity-80 text-white"
               />
             </div>
+            </Fade>
           </div>
-        </Fade>
+        
       </div>
     </>
   );
