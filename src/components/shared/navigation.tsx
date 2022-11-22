@@ -47,7 +47,7 @@ interface NavigationProps {
           </Bounce>
 
           {/* options */}
-          <Fade>
+          <Fade triggerOnce={true}>
             {/* dropdown menu - commented out in case we add more options */}
             {/* <button className="text-white cursor-pointer sm:hidden hover:opacity-75" onClick={() => setNavbarOpen(!navbarOpen)}>
               <ViewHeadlineIcon className="w-6 h-6" />
