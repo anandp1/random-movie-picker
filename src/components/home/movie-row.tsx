@@ -43,7 +43,10 @@ const MovieRow: React.FC<MovieRowProps> = ({
           mutateUserData={mutateUserData}
         />
       )}
+      
+      <Fade triggerOnce={true}>
       <div className="flex flex-col">
+        
         <div className="flex flex-row my-6 h-full sm:ml-14">
           <h2
             className="text-white col-span-6 sm:text-lg md:text-xl lg:text-2xl font-bold px-2 tracking-wider"
@@ -72,9 +75,9 @@ const MovieRow: React.FC<MovieRowProps> = ({
           )}
         </div>
 
-        <Fade direction={"left"} duration={2000} triggerOnce={true} cascade={true}>
+        <Fade duration={2000} cascade={true}>
           <div className="flex flex-row sm:mx-14">
-            <Fade delay={2000} triggerOnce={true} cascade={true}>
+            <Fade delay={1000}>
             <div className="group relative hidden sm:block h-full px-6 sm:px-9 my-auto">
               <ChevronLeftIcon
                 onClick={slideLeft}
@@ -94,7 +97,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
               )}
             </div>
 
-            <Fade delay={2000} triggerOnce={true} cascade={true}>
+            <Fade delay={1000}>
             <div className="group relative hidden sm:block h-full px-9 my-auto">
               <ChevronRightIcon
                 onClick={slideRight}
@@ -106,6 +109,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
         </Fade>
         
       </div>
+      </Fade>
     </>
   );
 };
