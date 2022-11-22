@@ -37,7 +37,7 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
         />
         <div className="absolute top-0 left-0 w-full h-full hover:bg-neutral-900/80 opacity-0 hover:opacity-100 text-white">
           <XIcon
-            className="absolute left-0 w-[50px] sm:w-[50px] md:w-[50px]"
+            className="absolute right-0 w-[35px] sm:w-[35px] md:w-[35px]"
             onClick={ async () => {
               await deleteMovie(movie.title,movie.imageUrl,movie.imbdId,yourUsername);
               mutateUserData();
