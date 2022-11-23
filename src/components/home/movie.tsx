@@ -9,6 +9,7 @@ export interface MovieComponentProps {
   movie: Movie;
   yourUsername: string,
   editMode: boolean;
+  username: string;
   mutateUserData: KeyedMutator<any>
 }
 
@@ -26,9 +27,11 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
   movie,
   yourUsername,
   editMode,
+  username,
   mutateUserData
 }: MovieComponentProps) => {
   return (
+      
       <div
         key={movie.imbdId}
         className="w-[130px] sm:w-[150px] md:w-[180px] lg:w-[220px] inline-block cursor-pointer relative p-2 sm:mx-4 md:mx-7"
@@ -39,13 +42,15 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
           alt={movie.title}
         />
         <div className="absolute top-0 left-0 w-full h-full hover:bg-neutral-900/80 opacity-0 hover:opacity-100 text-white">
-          <XIcon
-            className={"absolute top-4 right-4 w-[24px] opacity-80 hover:opacity-60 cursor-pointer" + (editMode ? "block" : "hidden")} 
-            onClick={ async () => {
+          {editMode && yourUsername === username && (
+            <XIcon
+              className={"absolute top-4 right-4 w-[24px] opacity-80 hover:opacity-60 cursor-pointer"} 
+              onClick={ async () => {
               await deleteMovie(movie.title,movie.imageUrl,movie.imbdId,yourUsername);
-              mutateUserData();
-            }}
+                mutateUserData();
+              }}
           />
+          )}
           <p className="white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center ">
             {movie.title}
           </p>
