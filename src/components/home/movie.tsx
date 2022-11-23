@@ -1,12 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { Movie } from "../../modal/user.modal";
-import { XIcon } from "@heroicons/react/outline";
+import  XIcon from "@heroicons/react/solid/TrashIcon";
 import axios from "axios";
 import { KeyedMutator } from "swr";
+import { Dispatch, SetStateAction } from "react";
 
 export interface MovieComponentProps {
   movie: Movie;
   yourUsername: string,
+  editMode: boolean;
   mutateUserData: KeyedMutator<any>
 }
 
@@ -23,6 +25,7 @@ const deleteMovie = async (
 const MovieComponent: React.FC<MovieComponentProps> = ({
   movie,
   yourUsername,
+  editMode,
   mutateUserData
 }: MovieComponentProps) => {
   return (
@@ -37,7 +40,7 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
         />
         <div className="absolute top-0 left-0 w-full h-full hover:bg-neutral-900/80 opacity-0 hover:opacity-100 text-white">
           <XIcon
-            className="absolute right-0 w-[35px] sm:w-[35px] md:w-[35px]"
+            className={"absolute top-4 right-4 w-[24px] opacity-80 hover:opacity-60 cursor-pointer" + (editMode ? "block" : "hidden")} 
             onClick={ async () => {
               await deleteMovie(movie.title,movie.imageUrl,movie.imbdId,yourUsername);
               mutateUserData();

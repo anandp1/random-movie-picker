@@ -32,6 +32,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
   };
 
   const [showSearch, setShowSearch] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   return (  
     <>
@@ -68,9 +69,9 @@ const MovieRow: React.FC<MovieRowProps> = ({
           {yourUsername === username && (
             <button
               className="opacity-90 hover:opacity-70  text-white mx-1"
-              // Onclick edit function
+              onClick={() => setEditMode(!setEditMode)}
             >
-              <PencilIcon className="w-6 h-6" />
+              {/* <PencilIcon className="w-6 h-6" /> */}
             </button>
           )}
         </div>
@@ -92,7 +93,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
             >
               {data.moviesByUser[username].movies?.map(
                 (movie: Movie, index) => {
-                  return <MovieComponent movie={movie} key={index} yourUsername={yourUsername} mutateUserData={mutateUserData}/>;
+                  return <MovieComponent movie={movie} key={index} yourUsername={yourUsername} editMode={editMode} mutateUserData={mutateUserData}/>;
                 }
               )}
             </div>
