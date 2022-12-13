@@ -118,7 +118,7 @@ const ShuffleModalFields: React.FC<ShuffleModalFieldsProps> = ({
           </FormControl>
         </ThemeProvider>
         <button
-          className="bg-gray-700 hover:opacity-80 text-white font-bold py-2 px-4 rounded-full w-[97%] ml-2 mt-4"
+          className="bg-neutral-700 hover:opacity-80 text-white font-bold py-2 px-4 rounded-full w-[97%] ml-2 mt-4"
           onClick={handleShuffle}
         >
           Shuffle
