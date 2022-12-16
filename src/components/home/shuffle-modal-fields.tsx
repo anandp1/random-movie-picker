@@ -83,7 +83,7 @@ const ShuffleModalFields: React.FC<ShuffleModalFieldsProps> = ({
   const widthForm = width <= 640 ? 280 : 450;
   return (
     <div className="flex flex-col gap-y-3">
-      <p className="text-center text-xl font-medium text-white mb-2">Shuffle</p>
+      <p className="text-center text-xl font-bold text-white mb-2 tracking-wider">Who's Watching?</p>
 
       <div className="w-full">
         <ThemeProvider theme={darkTheme}>
@@ -118,7 +118,7 @@ const ShuffleModalFields: React.FC<ShuffleModalFieldsProps> = ({
           </FormControl>
         </ThemeProvider>
         <button
-          className="bg-neutral-700 hover:opacity-80 text-white font-bold py-2 px-4 rounded-full w-[97%] ml-2 mt-4"
+          className="bg-neutral-700 hover:opacity-80 text-white font-bold py-2 px-4 rounded-full w-[97%] ml-2 mt-4 tracking-wide"
           onClick={handleShuffle}
         >
           Shuffle
