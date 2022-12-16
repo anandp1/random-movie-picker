@@ -1,10 +1,11 @@
-import { ChevronLeftIcon, ChevronRightIcon, PencilIcon, PlusCircleIcon } from "@heroicons/react/solid";
+import { ChevronLeftIcon, ChevronRightIcon, PencilIcon, PlusCircleIcon, BadgeCheckIcon } from "@heroicons/react/solid";
 import { Movie } from "../../modal/user.modal";
 import MovieComponent from "./movie";
 import { SearchPalette } from "../shared/search-palette";
 import { KeyedMutator } from "swr";
 import React, { useState } from "react";
 import { Fade } from "react-awesome-reveal";
+import { Warning } from "@mui/icons-material";
 
 interface MovieRowProps {
   data: any;
@@ -69,9 +70,9 @@ const MovieRow: React.FC<MovieRowProps> = ({
           {yourUsername === username && (
             <button
               className="opacity-90 hover:opacity-70  text-white mx-1"
-              onClick={() => setEditMode(!setEditMode)}
+              onClick={() => {setEditMode(!editMode);console.log(editMode);}}
             >
-              <PencilIcon className="w-6 h-6" />
+              {editMode ? <BadgeCheckIcon className="w-6 h-6"/> : <PencilIcon className="w-6 h-6" />}
             </button>
           )}
         </div>
