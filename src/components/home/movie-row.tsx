@@ -70,7 +70,7 @@ const MovieRow: React.FC<MovieRowProps> = ({
           {yourUsername === username && (
             <button
               className="opacity-90 hover:opacity-70  text-white mx-1"
-              onClick={() => {setEditMode(!editMode);console.log(editMode);}}
+              onClick={() => setEditMode(!editMode)}
             >
               {editMode ? <BadgeCheckIcon className="w-6 h-6"/> : <PencilIcon className="w-6 h-6" />}
             </button>
