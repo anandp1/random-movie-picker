@@ -32,30 +32,47 @@ const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
     );
   }
 
+  if (!data) {
+    return (
+      <Layout
+        username={username}
+        mutateUserData={mutate}
+        availableUsers={availableUsers}
+      >
+        <p className="text-white text-bold tracking-wider">Loading...</p>
+      </Layout>
+    );
+  }
+
+  const reorderedUserArray = [
+    ...Object.keys(data.moviesByUser).filter(
+      (username) => username === yourUsername
+    ),
+    ...Object.keys(data.moviesByUser).filter(
+      (username) => username !== yourUsername
+    ),
+  ];
+
   return (
     <Layout
       username={username}
       mutateUserData={mutate}
       availableUsers={availableUsers}
     >
-      {data ? (
-        <div className="flex flex-col">
-          {Object.keys(data.moviesByUser).map((username, index) => {
-            return (
-              <MovieRow
-                key={username}
-                username={username}
-                yourUsername={yourUsername}
-                randomId={index}
-                data={data}
-                mutateUserData={mutate}
-              />
-            );
-          })}
-        </div>
-      ) : (
-        <p className="text-white text-bold tracking-wider">Loading...</p>
-      )}
+      <div className="flex flex-col">
+        {reorderedUserArray.map((username: string, index: number) => {
+          return (
+            <MovieRow
+              key={username}
+              username={username}
+              yourUsername={yourUsername}
+              randomId={index}
+              data={data}
+              mutateUserData={mutate}
+            />
+          );
+        })}
+      </div>
     </Layout>
   );
 };
