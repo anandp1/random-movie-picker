@@ -5,7 +5,7 @@ import Layout from "../components/shared/layout";
 import { fetcher } from "../lib/fetcher";
 
 import MovieRow from "../components/home/movie-row";
-import { getAvailableUsers, SafeUser } from "../modal/user.modal";
+import { getAvailableUsers, MovieByUser, SafeUser } from "../modal/user.modal";
 
 interface HomeProps {
   username: string;
@@ -13,7 +13,10 @@ interface HomeProps {
 }
 
 const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
-  const { data, error, mutate } = useSWR("/api/user-movies", fetcher);
+  const { data, error, mutate } = useSWR<MovieByUser>(
+    "/api/user-movies",
+    fetcher
+  );
 
   const yourUsername = username;
 
@@ -24,7 +27,7 @@ const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
         mutateUserData={mutate}
         availableUsers={availableUsers}
       >
-        <p className = "text-white text-bold tracking-wider">Failed to load</p>
+        <p className="text-white text-bold tracking-wider">Failed to load</p>
       </Layout>
     );
   }
@@ -51,7 +54,7 @@ const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
           })}
         </div>
       ) : (
-        <p className = "text-white text-bold tracking-wider">Loading...</p>
+        <p className="text-white text-bold tracking-wider">Loading...</p>
       )}
     </Layout>
   );

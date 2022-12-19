@@ -1,7 +1,8 @@
 import { Dialog, Combobox } from "@headlessui/react";
 import { SearchIcon, SyncIcon } from "@primer/octicons-react";
 import { PlusCircleIcon } from "@heroicons/react/outline";
-
+import Image from "next/image";
+import axios from "axios";
 import {
   Dispatch,
   SetStateAction,
@@ -13,9 +14,8 @@ import useSWR, { KeyedMutator } from "swr";
 import { debounce } from "lodash";
 
 import { fetcher } from "../../lib/fetcher";
-import Image from "next/image";
-import axios from "axios";
 import { SignInRole } from "../../pages/sign-in";
+import { Movie } from "../../modal/user.modal";
 
 const SyncSection = (
   <div className="w-full flex justify-center">
@@ -38,7 +38,9 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
 }: SearchPaletteProps) => {
   const [query, setQuery] = useState("");
   const { data, error, mutate } = useSWR(
-    query ? `/api/movies?title=${query}&username=${username}` : null,
+    query
+      ? `/api/movies?title=${encodeURIComponent(query)}&username=${username}`
+      : null,
     fetcher
   );
 
@@ -54,16 +56,9 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
     []
   );
 
-  const handleSelectedMovie = async (
-    title: string,
-    imdbID: string,
-    imageUrl: string
-  ) => {
-    await axios.post("/api/add-movie", {
-      title,
-      imdbID,
-      imageUrl,
-      username,
+  const handleSelectedMovie = async (movie: Movie) => {
+    await axios.post(`/api/add-movie?username=${username}`, {
+      ...movie,
     });
 
     mutateUserData();
@@ -109,19 +104,13 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
           {!data
             ? SyncSection
             : data.movieResults
-                ?.filter((movie: any) => movie.Poster !== "N/A")
-                .map((movie: any) => (
-                  <div key={movie.Title} className="p-4 text-sm text-white">
+                ?.filter((movie: Movie) => movie.poster_path !== "N/A")
+                .map((movie: Movie) => (
+                  <div key={movie.title} className="p-4 text-sm text-white">
                     <button
                       className="rounded-lg shadow-md w-full group relative bg-neutral-800"
                       disabled={username === SignInRole.GUEST}
-                      onClick={() =>
-                        handleSelectedMovie(
-                          movie.Title,
-                          movie.imdbID,
-                          movie.Poster
-                        )
-                      }
+                      onClick={() => handleSelectedMovie(movie)}
                     >
                       <span className="hidden group-hover:block absolute right-[44%] top-1/2">
                         <PlusCircleIcon className="w-10 h-10 text-neutral-300" />
@@ -129,7 +118,7 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
 
                       <div className="flex flex-row text-left gap-x-4 hover:opacity-50 px-4 py-8">
                         <Image
-                          src={movie.Poster}
+                          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${movie.poster_path}`}
                           width={100}
                           height={150}
                           className="text-2xl"
@@ -137,9 +126,11 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({
                         />
                         <div className="flex flex-col">
                           <span className="text-2xl mr-auto">
-                            {movie.Title}
+                            {movie.title}
                           </span>
-                          <span className="text-xl mr-auto">{movie.Year}</span>
+                          <span className="text-xl mr-auto">
+                            {movie.release_date.split("-")[0]}
+                          </span>
                         </div>
                       </div>
                     </button>
