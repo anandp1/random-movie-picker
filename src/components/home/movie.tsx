@@ -31,13 +31,15 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
   index,
   isLastMovie,
 }: MovieComponentProps) => {
-  const movieMargin = isLastMovie ? "sm:ml-4 md:ml-7" : "sm:mr-4 md:mr-7";
+  const movieMargin = isLastMovie
+    ? "ml-2 sm:ml-4 md:ml-7"
+    : "mr-2 sm:mr-4 md:mr-7";
   return (
     <div
       key={movie.id}
       className={classNames(
         "w-[130px] sm:w-[150px] md:w-[180px] lg:w-[220px] inline-block cursor-pointer relative",
-        index === 0 || isLastMovie ? movieMargin : "sm:mx-4 md:mx-7"
+        index === 0 || isLastMovie ? movieMargin : "mx-2 sm:mx-4 md:mx-7"
       )}
     >
       <img
