@@ -44,7 +44,7 @@ const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
     );
   }
 
-  const reorderedUserArray = [
+  const loggedInUserFirstArray = [
     ...Object.keys(data.moviesByUser).filter(
       (username) => username === yourUsername
     ),
@@ -60,7 +60,7 @@ const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
       availableUsers={availableUsers}
     >
       <div className="flex flex-col">
-        {reorderedUserArray.map((username: string, index: number) => {
+        {loggedInUserFirstArray.map((username: string, index: number) => {
           return (
             <MovieRow
               key={username}
