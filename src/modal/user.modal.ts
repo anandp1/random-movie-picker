@@ -25,8 +25,8 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
-  imbdId: string;
-  imageUrl: string;
+  imbdId?: string;
+  imageUrl?: string;
 }
 
 export interface MovieByUser {
