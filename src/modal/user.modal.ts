@@ -25,6 +25,8 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  imbdId: string;
+  imageUrl: string;
 }
 
 export interface MovieByUser {
@@ -54,18 +56,15 @@ const addMovieToUser = async (
 };
 
 const deleteMovieFromUser = async (
-  id: string,
+  title: string,
   username: string
 ): Promise<void> => {
   const client = await getMongoClient();
   const db = client.db(process.env.MONGODB_NAME);
 
   const userCollection: Collection<User> = db.collection("users");
-  const idToNumber = Number(id);
-  userCollection.updateOne(
-    { username },
-    { $pull: { movies: { id: idToNumber } } }
-  );
+
+  userCollection.updateOne({ username }, { $pull: { movies: { title } } });
 };
 
 const getMoviesByUser = async (): Promise<MovieByUser> => {

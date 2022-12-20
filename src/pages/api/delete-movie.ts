@@ -6,9 +6,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { id, username } = req.query;
+  const { title, username } = req.query;
 
-  await deleteMovieFromUser(id as string, username as string);
+  await deleteMovieFromUser(title as string, username as string);
 
   res.status(200).json({ message: "Sucessfully Deleted" });
 }

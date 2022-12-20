@@ -18,7 +18,7 @@ export interface MovieComponentProps {
 
 const deleteMovie = async (movie: Movie, yourUsername: string) => {
   await axios.delete(
-    `/api/delete-movie?username=${yourUsername}&id=${movie.id}`
+    `/api/delete-movie?username=${yourUsername}&title=${movie.title}`
   );
 };
 
@@ -44,7 +44,7 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
     >
       <img
         className="w-full h-auto block"
-        src={movie.poster_path}
+        src={movie.poster_path ?? movie.imageUrl}
         alt={movie.title}
       />
       <div className="absolute top-0 left-0 w-full h-full hover:bg-neutral-900/80 opacity-0 hover:opacity-100 text-white">
