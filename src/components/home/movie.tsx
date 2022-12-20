@@ -31,9 +31,10 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
   index,
   isLastMovie,
 }: MovieComponentProps) => {
-  const movieMargin = isLastMovie
-    ? "ml-2 sm:ml-4 md:ml-7"
-    : "mr-2 sm:mr-4 md:mr-7";
+  const movieMargin =
+    isLastMovie && index !== 0
+      ? "ml-2 sm:ml-4 md:ml-7"
+      : "mr-2 sm:mr-4 md:mr-7";
   return (
     <div
       key={movie.id}
