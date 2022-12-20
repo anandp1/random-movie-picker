@@ -5,7 +5,7 @@ import Layout from "../components/shared/layout";
 import { fetcher } from "../lib/fetcher";
 
 import MovieRow from "../components/home/movie-row";
-import { getAvailableUsers, SafeUser } from "../modal/user.modal";
+import { getAvailableUsers, MovieByUser, SafeUser } from "../modal/user.modal";
 
 interface HomeProps {
   username: string;
@@ -13,7 +13,10 @@ interface HomeProps {
 }
 
 const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
-  const { data, error, mutate } = useSWR("/api/user-movies", fetcher);
+  const { data, error, mutate } = useSWR<MovieByUser>(
+    "/api/user-movies",
+    fetcher
+  );
 
   const yourUsername = username;
 
@@ -24,10 +27,31 @@ const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
         mutateUserData={mutate}
         availableUsers={availableUsers}
       >
-        <p className = "text-white text-bold tracking-wider">Failed to load</p>
+        <p className="text-white text-bold tracking-wider">Failed to load</p>
       </Layout>
     );
   }
+
+  if (!data) {
+    return (
+      <Layout
+        username={username}
+        mutateUserData={mutate}
+        availableUsers={availableUsers}
+      >
+        <p className="text-white text-bold tracking-wider">Loading...</p>
+      </Layout>
+    );
+  }
+
+  const loggedInUserFirstArray = [
+    ...Object.keys(data.moviesByUser).filter(
+      (username) => username === yourUsername
+    ),
+    ...Object.keys(data.moviesByUser).filter(
+      (username) => username !== yourUsername
+    ),
+  ];
 
   return (
     <Layout
@@ -35,24 +59,20 @@ const Home: NextPage = ({ username, availableUsers }: HomeProps) => {
       mutateUserData={mutate}
       availableUsers={availableUsers}
     >
-      {data ? (
-        <div className="flex flex-col">
-          {Object.keys(data.moviesByUser).map((username, index) => {
-            return (
-              <MovieRow
-                key={username}
-                username={username}
-                yourUsername={yourUsername}
-                randomId={index}
-                data={data}
-                mutateUserData={mutate}
-              />
-            );
-          })}
-        </div>
-      ) : (
-        <p className = "text-white text-bold tracking-wider">Loading...</p>
-      )}
+      <div className="flex flex-col">
+        {loggedInUserFirstArray.map((username: string, index: number) => {
+          return (
+            <MovieRow
+              key={username}
+              username={username}
+              yourUsername={yourUsername}
+              randomId={index}
+              data={data}
+              mutateUserData={mutate}
+            />
+          );
+        })}
+      </div>
     </Layout>
   );
 };

@@ -6,10 +6,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const { title, username } = req.query;
 
-  const { imdbID, username, title, imageUrl } = req.query;
-
-  await deleteMovieFromUser(title as string, imageUrl as string, imdbID as string, username as string);
+  await deleteMovieFromUser(title as string, username as string);
 
   res.status(200).json({ message: "Sucessfully Deleted" });
 }

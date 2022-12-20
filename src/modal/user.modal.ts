@@ -11,9 +11,22 @@ export interface User {
 export type SafeUser = Omit<User, "password" | "movies">;
 
 export interface Movie {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
   title: string;
-  imbdId: string;
-  imageUrl: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  imbdId?: string;
+  imageUrl?: string;
 }
 
 export interface MovieByUser {
@@ -32,33 +45,27 @@ const getUser = async (username: string): Promise<User | null> => {
 
 const addMovieToUser = async (
   username: string,
-  title: string,
-  imbdId: string,
-  imageUrl: string
+  movie: Movie
 ): Promise<void> => {
   const client = await getMongoClient();
   const db = client.db(process.env.MONGODB_NAME);
 
+  movie.poster_path = `${process.env.NEXT_PUBLIC_IMAGE_URL}${movie.poster_path}`;
   const userCollection: Collection<User> = db.collection("users");
-  await userCollection.updateOne(
-    { username },
-    { $push: { movies: { title, imbdId, imageUrl } } }
-  );
+  await userCollection.updateOne({ username }, { $push: { movies: movie } });
 };
 
 const deleteMovieFromUser = async (
-  title:string,
-  imageUrl:string,
-  imbdId: string,
-  username: string,
+  title: string,
+  username: string
 ): Promise<void> => {
-
   const client = await getMongoClient();
   const db = client.db(process.env.MONGODB_NAME);
-  
+
   const userCollection: Collection<User> = db.collection("users");
-  await userCollection.updateOne({username}, {$pull: {movies: {imbdId, title, imageUrl}}});
- };
+
+  userCollection.updateOne({ username }, { $pull: { movies: { title } } });
+};
 
 const getMoviesByUser = async (): Promise<MovieByUser> => {
   const client = await getMongoClient();
@@ -119,5 +126,5 @@ export {
   getMoviesByUser,
   getAllMovies,
   getAvailableUsers,
-  deleteMovieFromUser
+  deleteMovieFromUser,
 };
