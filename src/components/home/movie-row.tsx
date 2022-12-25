@@ -35,7 +35,6 @@ const MovieRow: React.FC<MovieRowProps> = ({
 
   const slideRight = () => {
     let slider = document.getElementById("slider" + randomId);
-    console.log(window.innerWidth);
     slider.scrollLeft = slider.scrollLeft + window.innerWidth - 200;
   };
 
