@@ -17,6 +17,9 @@ import { Movie, SafeUser } from "../../modal/user.modal";
 import { DataContext } from "../../pages";
 import { genreList } from "../../lib/genre-list";
 
+import { getSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -56,7 +59,7 @@ const SettingsModalFields: React.FC<SettingsModalFieldProps> = ({
     document.body.clientWidth;
 
   const handleLogout = async () => {
-    
+    signOut()
   };
 
   return (
@@ -66,20 +69,6 @@ const SettingsModalFields: React.FC<SettingsModalFieldProps> = ({
       </p>
 
       <div className="w-full">
-        <ThemeProvider theme={darkTheme}>
-          {/* <FormControl sx=value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </Box>
-              )}
-              MenuProps={MenuProps}
-            >
-                    {data.name}
-                  </MenuItem>
-                ))}
-            </Select>
-          </FormControl> */}
-        </ThemeProvider>
         <button
           className="bg-neutral-700 hover:opacity-80 text-white font-bold py-2 px-4 rounded-full w-[97%] ml-2 mt-4 tracking-wide"
           onClick={handleLogout}
