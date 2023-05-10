@@ -1,6 +1,7 @@
 import React from "react";
 import { KeyedMutator } from "swr";
 import ShuffleModal from "../home/shuffle-modal";
+import SettingsModal from "../home/settings-modal";
 import { SafeUser } from "../../modal/user.modal";
 import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
@@ -19,13 +20,23 @@ interface NavigationProps {
     availableUsers,
 }: NavigationProps) => {;
   const [navbarOpen, setNavbarOpen] = React.useState(false);
-    const [showShuffle, setShowShuffle] = React.useState(false);
+  const [showShuffle, setShowShuffle] = React.useState(false);
+  const [showSettings, setShowSettings] = React.useState(false);
+
   return (
     <>
       {showShuffle && (
         <ShuffleModal
           showShuffle={showShuffle}
           setShowShuffle={setShowShuffle}
+          availableUsers={availableUsers}
+        />
+      )}
+
+      {showSettings && (
+        <SettingsModal
+          showSettings={showSettings}
+          setShowSettings={setShowSettings}
           availableUsers={availableUsers}
         />
       )}
@@ -63,7 +74,7 @@ interface NavigationProps {
                 </li>
                 {/* settings */}
                 <li className="nav-item mt-1">
-                  <button className = "mx-2 flex cursor-pointer items-center text-white hover:opacity-75">
+                  <button className = "mx-2 flex cursor-pointer items-center text-white hover:opacity-75" onClick={() => setShowSettings(true)}>
                     <span className="px-2 sm:block hidden sm:text-md md:text-lg lowercase font-bold tracking-wider">Settings</span>
                     <SettingsIcon className="text-white w-7 h-7" />
                   </button>
