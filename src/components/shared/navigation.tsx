@@ -5,7 +5,9 @@ import { SafeUser } from "../../modal/user.modal";
 import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout"
 import { Fade, Bounce } from "react-awesome-reveal";
+import { signOut } from 'next-auth/react'
 
 interface NavigationProps {
   username: string;
@@ -62,16 +64,22 @@ interface NavigationProps {
                   </button>
                 </li>
                 {/* settings */}
-                <li className="nav-item mt-1">
+                {/* <li className="nav-item mt-1">
                   <button className = "mx-2 flex cursor-pointer items-center text-white hover:opacity-75">
                     <span className="px-2 sm:block hidden sm:text-md md:text-lg lowercase font-bold tracking-wider">Settings</span>
                     <SettingsIcon className="text-white w-7 h-7" />
+                  </button>
+                </li> */}
+                {/* sign out */}
+                <li className="nav-item mt-1">
+                  <button className = "mx-2 flex cursor-pointer items-center text-white hover:opacity-75" onClick={() => signOut()}>
+                    <span className="px-2 sm:block hidden sm:text-md md:text-lg lowercase font-bold tracking-wider">Sign Out</span>
+                    <LogoutIcon className="text-white w-7 h-7" />
                   </button>
                 </li>
               </ul>
             </div>
           </Fade>
-
         </div>
       </nav>
 

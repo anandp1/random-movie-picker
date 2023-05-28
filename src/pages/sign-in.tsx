@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { Fade } from "react-awesome-reveal";
 
 export enum SignInRole {
   USER = "user",
@@ -29,19 +30,26 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8 mt-24 mx-8">
+    <div className="w-screen h-screen bg-gradient-to-t from-slate-800 to-stone-900 flex flex-col justify-center sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-          Sign in to your account
-        </h2>
+        {/* logo */}
+          <Fade triggerOnce={true}>
+            <div className="relative flex justify-center sm:mt-6 hover:opacity-75">
+              <img
+              className="w-[300px] lg:w-[360px] sm:mx-8"
+              src={"logo.png"}
+              alt={"Logo"}
+              />
+            </div>
+          </Fade>
       </div>
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <div className="space-y-6">
             <div>
               <label
                 htmlFor="username"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-stone-200"
               >
                 Username
               </label>
@@ -61,7 +69,7 @@ const SignIn: React.FC = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-stone-200"
               >
                 Password
               </label>
@@ -80,21 +88,18 @@ const SignIn: React.FC = () => {
             <div>
               <button
                 onClick={() => handleSignIn(SignInRole.USER)}
-                className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-stone-200 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
-                Sign in
+                Sign In
               </button>
             </div>
           </div>
           <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
+                <div className="w-full border-t border-slate-500" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="bg-white px-2 text-gray-500">
-                  Or continue with
-                </span>
               </div>
             </div>
 
@@ -102,9 +107,9 @@ const SignIn: React.FC = () => {
               <div>
                 <button
                   onClick={() => handleSignIn(SignInRole.GUEST)}
-                  className="flex w-full justify-center rounded-md border border-transparent bg-indigo-800 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="flex w-full justify-center rounded-md border border-transparent bg-indigo-800 py-2 px-4 text-sm font-medium text-stone-200 shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  Guest Sign in
+                  Guest Sign In
                 </button>
               </div>
             </div>
